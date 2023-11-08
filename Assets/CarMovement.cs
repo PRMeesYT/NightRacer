@@ -30,8 +30,7 @@ public class CarMovement : MonoBehaviour
     public Collider groundCheck;
     public LayerMask groundMask;
 
-    public Transform[] shootLocation;
-    public GameObject bullet;
+    public Rigidbody rb;
 
     public bool canShoot;
     public bool canMove;
@@ -44,7 +43,6 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private AudioSource decelHigh;
     [SerializeField] private AudioSource decelLow;
 
-    Rigidbody rb;
 
     void Start()
     {
@@ -99,23 +97,23 @@ public class CarMovement : MonoBehaviour
             //}
         }
 
-        if (_angle < 0.0f)
-        {
+        //if (_angle < 0.0f)
+        //{
 
-        }
-        else if (_angle > 0.0f)
-        {
+        //}
+        //else if (_angle > 0.0f)
+        //{
 
-        }
+        //}
 
-        if (_forward > 0.0f)
-        {
-            rb.AddForce(Vector3.forward * power, ForceMode.Acceleration);
-        }
-        else if (_forward < 0.0f)
-        {
+        //if (_forward > 0.0f)
+        //{
+        //    rb.AddForce(Vector3.forward * power, ForceMode.Acceleration);
+        //}
+        //else if (_forward < 0.0f)
+        //{
 
-        }
+        //}
 
         if (rb.velocity.magnitude >= maxSpeed)
         {

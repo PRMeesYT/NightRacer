@@ -9,16 +9,21 @@ public class UIGame : MonoBehaviour
 
     float speed;
 
-    CarMovement car;
+    public GameObject car;
+
+    Rigidbody carRigidbody;
 
     void Start()
     {
-        car = FindAnyObjectByType<CarMovement>();
+        if (car != null)
+        {
+            carRigidbody = car.GetComponent<Rigidbody>();
+        }
     }
 
     void Update()
     {
-        speed = car.rb.velocity.magnitude * 3.6f;
+        speed = carRigidbody.velocity.magnitude * 3.6f;
         speedText.text = (int)speed + " kp/h";
     }
 }

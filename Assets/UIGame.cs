@@ -19,6 +19,7 @@ public class UIGame : MonoBehaviour
         {
             carRigidbody = car.GetComponent<Rigidbody>();
         }
+        return;
     }
 
     void Update()

@@ -14,8 +14,10 @@ public class RaceManager : MonoBehaviour
 
     public GameObject hoverCar;
 
+    [SerializeField] private List<Transform> carTransfromList;
+
     private List<CheckpointSingle> checkpointSingleList;
-    private int nextCheckpointSingleIndex;
+    private List<int> nextCheckpointSingleIndexList;
 
     private void Awake()
     {
@@ -32,15 +34,25 @@ public class RaceManager : MonoBehaviour
 
             checkpointSingleList.Add(checkpointSingle);
         }
+
+        nextCheckpointSingleIndexList = new List<int>();
+        foreach (Transform carTransform in carTransfromList)
+        {
+            nextCheckpointSingleIndexList.Add(0);
+        }
     }
 
-    public void PlayerThroughCheckpoint(CheckpointSingle checkpointSingle)
+    public void carThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
+        int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)];
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
             //Correct Checkpoint
-            nextCheckpointSingleIndex = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count;
             Debug.Log("Correct");
+            CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
+            correctCheckpointSingle.Hide();
+
+            nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count; ;
             OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
         }
         else
@@ -48,6 +60,8 @@ public class RaceManager : MonoBehaviour
             //Wrong Checkpoint
             Debug.Log("Wrong");
             OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
+            CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
+            correctCheckpointSingle.Show();
         }
     }
 

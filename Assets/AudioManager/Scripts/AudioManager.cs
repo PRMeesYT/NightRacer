@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource musicSource;
     private AudioSource musicSource2;
     private AudioSource sfxSource;
-    private float musicVolume = 1;
+    public float musicVolume = 1;
     // Multiple musics
     private bool firstMusicSourceIsActive;
     #endregion
@@ -151,5 +151,17 @@ public class AudioManager : MonoBehaviour
     public void SetSFXVolume(float volume)
     {
         sfxSource.volume = volume;
+    }
+
+    public void MuteSFXVolume()
+    {
+        if (sfxSource.volume == 0)
+        {
+            sfxSource.volume = 1;
+        }
+        else if (sfxSource.volume == 1)
+        {
+            sfxSource.volume = 0;
+        }
     }
 }

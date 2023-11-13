@@ -8,6 +8,7 @@ public class StartManager : MonoBehaviour
     [SerializeField] private GameObject soloMenu;
 
     public AudioClip buttonClickSFX;
+    public AudioClip buttonHoverSFX;
     public AudioClip music1;
     public AudioClip music2;
 
@@ -26,7 +27,6 @@ public class StartManager : MonoBehaviour
 
     public void SettingsMenu()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
         if (settingsOpen)
         {
             mainButtons.SetActive(true);
@@ -43,8 +43,6 @@ public class StartManager : MonoBehaviour
 
     public void SoloMode()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
-
         if (soloOpen)
         {
             mainButtons.SetActive(true);
@@ -59,39 +57,43 @@ public class StartManager : MonoBehaviour
         }
     }
 
-    public void LoadMap1()
+    public void HoverSound()
+    {
+        AudioManager.Instance.PlaySFX(buttonHoverSFX, 1);
+    }
+
+    public void ClickSound()
     {
         AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
+    }
+
+    public void LoadMap1()
+    {
         SceneManager.LoadScene("SoloMap1");
     }
 
     public void LoadMap2()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
         SceneManager.LoadScene("SoloMap2");
     }
 
     public void LoadMap3()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
         SceneManager.LoadScene("SoloMap3");
     }
 
     public void LoadMap4()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
         SceneManager.LoadScene("SoloMap4");
     }
 
     public void VersusMode()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
         SceneManager.LoadScene("VersusScene");
     }
 
     public void QuitGame()
     {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
         Application.Quit();
     }
 }

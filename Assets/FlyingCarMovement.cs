@@ -20,8 +20,17 @@ public class FlyingCarMovement : MonoBehaviour
     public GameObject prop;
 
     Rigidbody rb;
+
+    UIGame UI;
+    CameraController camController;
+
     void Start()
     {
+        camController = FindObjectOfType<CameraController>();
+        camController.SetupCamera();
+        UI = FindObjectOfType<UIGame>();
+        UI.GetComponents();
+
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
     }

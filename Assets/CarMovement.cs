@@ -20,11 +20,11 @@ public class CarMovement : MonoBehaviour
 
     public Transform carVisual;
 
-    public TrailRenderer[] trails;
 
     public GameObject brakeLights;
     public GameObject reverseLights;
 
+    public TrailRenderer[] trails;
     public ParticleSystem[] smoke;
 
     public Collider groundCheck;
@@ -32,7 +32,6 @@ public class CarMovement : MonoBehaviour
 
     public Rigidbody rb;
 
-    public bool canShoot;
     public bool canMove;
 
     bool isDriving;
@@ -42,7 +41,6 @@ public class CarMovement : MonoBehaviour
     [SerializeField] private AudioSource accelHigh;
     [SerializeField] private AudioSource decelHigh;
     [SerializeField] private AudioSource decelLow;
-
 
     void Start()
     {

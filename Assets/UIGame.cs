@@ -15,16 +15,21 @@ public class UIGame : MonoBehaviour
 
     void Start()
     {
-        if (car != null)
-        {
-            carRigidbody = car.GetComponent<Rigidbody>();
-        }
-        return;
+        
     }
 
     void Update()
     {
-        speed = carRigidbody.velocity.magnitude * 3.6f;
-        speedText.text = (int)speed + " kp/h";
+        if (car != null)
+        {
+            speed = carRigidbody.velocity.magnitude * 3.6f;
+            speedText.text = (int)speed + " kp/h";
+        }
+    }
+
+    public void GetComponents()
+    {
+        car = GameObject.FindGameObjectWithTag("Player").gameObject;
+        carRigidbody = car.GetComponent<Rigidbody>();
     }
 }

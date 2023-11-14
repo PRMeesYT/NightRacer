@@ -16,6 +16,11 @@ public class UIGame : MonoBehaviour
 
     [SerializeField] private GameObject wrongDir;
 
+    public bool startTimer;
+
+    public float currentTimer;
+    public bool countDown;
+
     Rigidbody carRigidbody;
 
     void Start()
@@ -48,11 +53,19 @@ public class UIGame : MonoBehaviour
 
     void Update()
     {
+        if (startTimer)
+            EventManager.OnTimerStart();
+
         if (car != null)
         {
             speed = carRigidbody.velocity.magnitude * 3.6f;
             speedText.text = (int)speed + " kp/h";
         }
+    }
+
+    private void TrackTimer()
+    {
+        currentTimer = countDown ? currentTimer -= Time.deltaTime : currentTimer += Time.deltaTime;
     }
 
     public void GetComponents()

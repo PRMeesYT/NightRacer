@@ -19,9 +19,15 @@ public class RaceManager : MonoBehaviour
     private List<CheckpointSingle> checkpointSingleList;
     private List<int> nextCheckpointSingleIndexList;
 
+    UIGame UI;
+
     private void Awake()
     {
-        Instantiate(hoverCar, startLocation);
+        GameObject car1 = Instantiate(hoverCar, startLocation);
+
+        carTransfromList = new List<Transform>();
+
+        carTransfromList.Add(car1.transform);
 
         Transform checkpointTransform = transform.Find("CheckPoints");
         
@@ -40,11 +46,17 @@ public class RaceManager : MonoBehaviour
         {
             nextCheckpointSingleIndexList.Add(0);
         }
+
+        UI = FindObjectOfType<UIGame>();
     }
 
     public void carThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)];
+        if (checkpointSingleList.IndexOf(checkpointSingle) == 0)
+        {
+            UI.startTimer = true;
+        }
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
             //Correct Checkpoint

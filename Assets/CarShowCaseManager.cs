@@ -35,4 +35,31 @@ public class CarShowCaseManager : MonoBehaviour
         }
         carModels[0].SetActive(true);
     }
+
+    public void Car2()
+    {
+        foreach (GameObject model in carModels)
+        {
+            model.SetActive(false);
+        }
+        carModels[1].SetActive(true);
+    }
+
+    public void Car3()
+    {
+        foreach (GameObject model in carModels)
+        {
+            model.SetActive(false);
+        }
+        carModels[2].SetActive(true);
+    }
+
+    public void Car4()
+    {
+        foreach (GameObject model in carModels)
+        {
+            model.SetActive(false);
+        }
+        carModels[3].SetActive(true);
+    }
 }

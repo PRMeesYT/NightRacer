@@ -7,17 +7,17 @@ public class FlyingCarMovement : MonoBehaviour
     public float power;
     public float maxAngle;
 
-    private float _forward;
-    private float _backward;
-    private float _up;
-    private float _strafe;
-    private float _angle;
-    private float _brake;
+    private float horizontal;
+    private float vertical;
 
     public List<GameObject> springs;
 
     public GameObject cm;
     public GameObject prop;
+
+    public bool canMove;
+
+    public float player;
 
     Rigidbody rb;
 
@@ -33,12 +33,24 @@ public class FlyingCarMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
+
+        canMove = false;
     }
 
     void Update()
     {
-        rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.forward) * Input.GetAxis("Vertical") * 400f, prop.transform.position);
-        rb.AddTorque(Time.deltaTime * transform.TransformDirection(Vector3.up) * Input.GetAxis("Horizontal") * 300f);
+        if (canMove && player == 1)
+        {
+            vertical = Input.GetAxis("Vertical");
+            horizontal = Input.GetAxis("Horizontal");
+        }
+        else if (canMove && player == 2)
+        {
+            vertical = Input.GetAxis("Vertical2");
+            horizontal = Input.GetAxis("Horizontal2");
+        }
+        rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.forward) * vertical * 400f, prop.transform.position);
+        rb.AddTorque(Time.deltaTime * transform.TransformDirection(Vector3.up) * horizontal * 300f);
         foreach (GameObject spring in springs)
         {
             RaycastHit hit;
@@ -49,45 +61,5 @@ public class FlyingCarMovement : MonoBehaviour
         }
 
         rb.AddForce(-Time.deltaTime * transform.TransformDirection(Vector3.right) * transform.InverseTransformVector(rb.velocity).x * 5f);
-
-        //_forward = Input.GetAxis("Fire1");
-        //_backward = Input.GetAxis("Fire2");
-        //_up = Input.GetAxis("Vertical");
-        //_strafe = Input.GetAxis("Horizontal");
-
-        //Movement();
-    }
-
-    public void Movement()
-    {
-        if (_forward > 0)
-        {
-            transform.position += Vector3.forward * power * Time.deltaTime;
-        }
-
-        if (_backward > 0)
-        {
-            transform.position += Vector3.back * power * Time.deltaTime;
-        }
-
-        if (_strafe < 0)
-        {
-            transform.position += Vector3.left * power * Time.deltaTime;
-        }
-
-        if (_strafe > 0)
-        {
-            transform.position += Vector3.right * power * Time.deltaTime;
-        }
-
-        if (_up < 0)
-        {
-            transform.position += Vector3.down * power * Time.deltaTime;
-        }
-
-        if (_up > 0)
-        {
-            transform.position += Vector3.up * power * Time.deltaTime;
-        }
     }
 }

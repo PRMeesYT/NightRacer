@@ -3,7 +3,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RaceManager : MonoBehaviour
 {
@@ -19,15 +22,38 @@ public class RaceManager : MonoBehaviour
     private List<CheckpointSingle> checkpointSingleList;
     private List<int> nextCheckpointSingleIndexList;
 
+    public GameObject finish;
+
+    public bool multiplayer;
+
+    public TextMeshProUGUI UIText;
+
+    [SerializeField] private FlyingCarMovement flyingCarMovement;
+    [SerializeField] private FlyingCarMovement flyingCarMovementPlayer2;
     UIGame UI;
 
     private void Awake()
     {
-        GameObject car1 = Instantiate(hoverCar, startLocation);
-
         carTransfromList = new List<Transform>();
 
+        GameObject car1 = Instantiate(hoverCar, startLocation);
+
+        flyingCarMovement = car1.GetComponent<FlyingCarMovement>();
+
+        flyingCarMovement.player = 1;
+
         carTransfromList.Add(car1.transform);
+
+        if (multiplayer)
+        {
+            GameObject car2 = Instantiate(hoverCar, startLocation);
+
+            flyingCarMovementPlayer2 = car2.GetComponent<FlyingCarMovement>();
+
+            flyingCarMovementPlayer2.player = 2;
+
+            carTransfromList.Add(car2.transform);
+        }
 
         Transform checkpointTransform = transform.Find("CheckPoints");
         
@@ -48,6 +74,7 @@ public class RaceManager : MonoBehaviour
         }
 
         UI = FindObjectOfType<UIGame>();
+        StartCoroutine(CountDown());
     }
 
     public void carThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
@@ -75,6 +102,31 @@ public class RaceManager : MonoBehaviour
             CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
             correctCheckpointSingle.Show();
         }
+    }
+
+    IEnumerator CountDown()
+    {
+        float timer = 3f;
+        UIText.text = "3";
+        yield return new WaitForSeconds(1f);
+        timer--;
+        UIText.text = "2";
+        yield return new WaitForSeconds(1f);
+        timer--;
+        UIText.text = "1";
+        yield return new WaitForSeconds(1f);
+        UIText.text = "GO";
+        flyingCarMovement.canMove = true;
+        if (flyingCarMovementPlayer2 != null)
+            flyingCarMovementPlayer2.canMove = true;
+        yield return new WaitForSeconds(1f);
+        UIText.text = "";
+    }
+
+    public void Finish()
+    {
+        EventManager.OnTimerStop();
+        Debug.Log("test");
     }
 
     void Start()

@@ -12,8 +12,9 @@ public class CarShowCase : MonoBehaviour
 
     void Start()
     {
+        rotation = Quaternion.Euler(0, 180, 0);
         transform.position = carSpawnPoint.position;
-        rotation = transform.rotation;
+        transform.rotation = rotation;
     }
 
     void Update()

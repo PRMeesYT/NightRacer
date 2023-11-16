@@ -21,6 +21,9 @@ public class UIGame : MonoBehaviour
     public float currentTimer;
     public bool countDown;
 
+    [SerializeField] private Camera p1Cam;
+    [SerializeField] private Camera p2Cam;
+
     Rigidbody carRigidbody;
 
     void Start()
@@ -72,5 +75,15 @@ public class UIGame : MonoBehaviour
     {
         car = GameObject.FindGameObjectWithTag("Player").gameObject;
         carRigidbody = car.GetComponent<Rigidbody>();
+    }
+
+    public void Horizontal()
+    {
+
+    }
+
+    public void Vertical()
+    {
+
     }
 }

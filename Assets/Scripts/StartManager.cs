@@ -69,7 +69,7 @@ public class StartManager : MonoBehaviour
 
     public void LoadMap1()
     {
-        SceneManager.LoadScene("SoloMap1");
+        SceneManager.LoadScene("Game");
     }
 
     public void LoadMap2()

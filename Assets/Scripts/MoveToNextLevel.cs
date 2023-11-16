@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MoveToNextLevel : MonoBehaviour
 {
     public int nextSceneLoad;
+    private int eindLevel = 7;
 
     void Start()
     {
@@ -14,20 +15,16 @@ public class MoveToNextLevel : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            if(SceneManager.GetActiveScene().buildIndex == 7) /* < Change this int value to whatever your
-                                                                   last level build index is on your
-                                                                   build settings */
+            if(SceneManager.GetActiveScene().buildIndex == eindLevel)
             {
                 Debug.Log("You Completed ALL Levels");
                 
-                //Show Win Screen or Somethin.
+                //Win scherm / alle levels gehaald
             }
             else
             {
-                //Move to next level
                 SceneManager.LoadScene(nextSceneLoad);
 
-                //Setting Int for Index
                 if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
                 {
                     PlayerPrefs.SetInt("levelAt", nextSceneLoad);

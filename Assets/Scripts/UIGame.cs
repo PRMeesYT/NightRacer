@@ -57,7 +57,10 @@ public class UIGame : MonoBehaviour
     void Update()
     {
         if (startTimer)
+        {
             EventManager.OnTimerStart();
+            startTimer = false;
+        }
 
         if (car != null)
         {
@@ -75,6 +78,11 @@ public class UIGame : MonoBehaviour
     {
         car = GameObject.FindGameObjectWithTag("Player").gameObject;
         carRigidbody = car.GetComponent<Rigidbody>();
+    }
+
+    public void Finish()
+    {
+        EventManager.OnTimerStop();
     }
 
     public void Horizontal()

@@ -18,8 +18,12 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            RaceManager raceManager = FindObjectOfType<RaceManager>();
-            raceManager.Finish();
+            UIGame UI = FindObjectOfType<UIGame>();
+            UI.Finish();
+            Timer timer = FindObjectOfType<Timer>();
+            float score = timer.timeToDisplay;
+            ScoreManager scoreManager = FindObjectOfType<ScoreManager>();
+            scoreManager.Level1(score);
         }
     }
 }

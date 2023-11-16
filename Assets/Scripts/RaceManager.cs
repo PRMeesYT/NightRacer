@@ -123,12 +123,6 @@ public class RaceManager : MonoBehaviour
         UIText.text = "";
     }
 
-    public void Finish()
-    {
-        EventManager.OnTimerStop();
-        Debug.Log("test");
-    }
-
     void Start()
     {
         

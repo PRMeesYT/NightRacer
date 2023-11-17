@@ -83,6 +83,9 @@ public class UIGame : MonoBehaviour
     public void Finish()
     {
         EventManager.OnTimerStop();
+
+        RaceManager raceManager = FindObjectOfType<RaceManager>();
+        raceManager.UIText.text = "Finish!!!";
     }
 
     public void Horizontal()

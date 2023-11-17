@@ -80,10 +80,6 @@ public class RaceManager : MonoBehaviour
     public void carThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)];
-        if (checkpointSingleList.IndexOf(checkpointSingle) == 0)
-        {
-            UI.startTimer = true;
-        }
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
         {
             //Correct Checkpoint
@@ -121,6 +117,7 @@ public class RaceManager : MonoBehaviour
             flyingCarMovementPlayer2.canMove = true;
         yield return new WaitForSeconds(1f);
         UIText.text = "";
+        UI.startTimer = true;
     }
 
     void Start()

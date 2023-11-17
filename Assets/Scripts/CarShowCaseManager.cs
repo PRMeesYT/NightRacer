@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,8 +10,16 @@ public class CarShowCaseManager : MonoBehaviour
 
     public GameObject[] carModels;
 
+    public bool[] carUnlocked = new bool[4];
+
+    public int points;
+
+    [SerializeField] private TextMeshProUGUI pointsText;
+
     void Start()
     {
+        pointsText.text = "Points: " + points;
+        carUnlocked[0] = true;
         foreach (GameObject model in carModels)
         {
             model.SetActive(false);
@@ -19,7 +28,7 @@ public class CarShowCaseManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     public void Play()
@@ -29,37 +38,85 @@ public class CarShowCaseManager : MonoBehaviour
 
     public void Car1()
     {
-        foreach (GameObject model in carModels)
+        if (carUnlocked[0] == true)
         {
-            model.SetActive(false);
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[0].SetActive(true);
         }
-        carModels[0].SetActive(true);
     }
 
     public void Car2()
     {
-        foreach (GameObject model in carModels)
+        if (carUnlocked[1] == true)
         {
-            model.SetActive(false);
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[1].SetActive(true);
         }
-        carModels[1].SetActive(true);
+        else if (points > 0)
+        {
+            points--;
+            carUnlocked[1] = true;
+            pointsText.text = "Points: " + points;
+
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[1].SetActive(true);
+        }
     }
 
     public void Car3()
     {
-        foreach (GameObject model in carModels)
+        if (carUnlocked[2] == true)
         {
-            model.SetActive(false);
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[2].SetActive(true);
         }
-        carModels[2].SetActive(true);
+        else if (points > 0)
+        {
+            points--;
+            carUnlocked[2] = true;
+            pointsText.text = "Points: " + points;
+
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[2].SetActive(true);
+        }
     }
 
     public void Car4()
     {
-        foreach (GameObject model in carModels)
+        if (carUnlocked[3] == true)
         {
-            model.SetActive(false);
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[3].SetActive(true);
         }
-        carModels[3].SetActive(true);
+        else if (points > 0)
+        {
+            points--;
+            carUnlocked[3] = true;
+            pointsText.text = "Points: " + points;
+
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+            carModels[3].SetActive(true);
+        }
     }
 }

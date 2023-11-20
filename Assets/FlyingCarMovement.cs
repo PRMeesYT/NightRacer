@@ -14,6 +14,8 @@ public class FlyingCarMovement : MonoBehaviour
     private float _angle;
     private float _brake;
 
+    public AudioClip hoverSound;
+
     public List<GameObject> springs;
 
     public GameObject cm;
@@ -26,6 +28,8 @@ public class FlyingCarMovement : MonoBehaviour
 
     void Start()
     {
+        AudioManager.Instance.PlaySFX(hoverSound, 1);
+
         camController = FindObjectOfType<CameraController>();
         camController.SetupCamera();
         UI = FindObjectOfType<UIGame>();

@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
+    public AudioClip raceStartSFX;
+    public AudioClip powerUpPickupSFX;
+    public AudioClip winSoundSFX;
     public AudioClip music1;
     public AudioClip music2;
 
@@ -32,6 +35,11 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
     }
 
+    public void PowerPickupSound()
+    {
+        AudioManager.Instance.PlaySFX(powerUpPickupSFX, 1);
+    }
+
     public void MainMenu()
     {
         SceneManager.LoadScene("StartScene");
@@ -39,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PauseMenu()

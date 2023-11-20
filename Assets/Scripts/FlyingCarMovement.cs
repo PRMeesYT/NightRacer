@@ -22,12 +22,9 @@ public class FlyingCarMovement : MonoBehaviour
     Rigidbody rb;
 
     UIGame UI;
-    CameraController camController;
 
     void Start()
     {
-        camController = FindObjectOfType<CameraController>();
-        camController.SetupCamera();
         UI = FindObjectOfType<UIGame>();
         UI.GetComponents();
 

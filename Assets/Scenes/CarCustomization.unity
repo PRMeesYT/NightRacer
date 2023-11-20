@@ -242,7 +242,7 @@ MonoBehaviour:
   - {fileID: 1087659214}
   - {fileID: 1410731805}
   carUnlocked: 00000000
-  points: 2
+  points: 0
   pointsText: {fileID: 331472164}
 --- !u!4 &136692636
 Transform:

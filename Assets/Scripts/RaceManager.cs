@@ -13,7 +13,7 @@ public class RaceManager : MonoBehaviour
     public event EventHandler OnPlayerCorrectCheckpoint;
     public event EventHandler OnPlayerWrongCheckpoint;
 
-    public Transform startLocation;
+    public Transform[] startLocation;
 
     public GameObject hoverCar;
 
@@ -31,12 +31,13 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private FlyingCarMovement flyingCarMovement;
     [SerializeField] private FlyingCarMovement flyingCarMovementPlayer2;
     UIGame UI;
+    CameraController camController;
 
     private void Awake()
     {
         carTransfromList = new List<Transform>();
 
-        GameObject car1 = Instantiate(hoverCar, startLocation);
+        GameObject car1 = Instantiate(hoverCar, startLocation[0]);
 
         flyingCarMovement = car1.GetComponent<FlyingCarMovement>();
 
@@ -44,9 +45,14 @@ public class RaceManager : MonoBehaviour
 
         carTransfromList.Add(car1.transform);
 
+        camController = FindObjectOfType<CameraController>();
+        camController.SetupCamera();
+
         if (multiplayer)
         {
-            GameObject car2 = Instantiate(hoverCar, startLocation);
+            GameObject car2 = Instantiate(hoverCar, startLocation[1]);
+
+            car2.tag = "Player2";
 
             flyingCarMovementPlayer2 = car2.GetComponent<FlyingCarMovement>();
 
@@ -55,8 +61,9 @@ public class RaceManager : MonoBehaviour
             carTransfromList.Add(car2.transform);
         }
 
+
         Transform checkpointTransform = transform.Find("CheckPoints");
-        
+
         checkpointSingleList = new List<CheckpointSingle>();
         foreach (Transform checkPointSingleTransform in checkpointTransform)
         {
@@ -77,7 +84,7 @@ public class RaceManager : MonoBehaviour
         StartCoroutine(CountDown());
     }
 
-    public void carThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
+    public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
         int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)];
         if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
@@ -122,11 +129,11 @@ public class RaceManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
     {
-        
+
     }
 }

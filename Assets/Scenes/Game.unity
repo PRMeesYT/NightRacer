@@ -1209,7 +1209,7 @@ PrefabInstance:
       objectReference: {fileID: 1802848427}
     - target: {fileID: 7428425793885119268, guid: eb619c4b9b6d69847925085153365459, type: 3}
       propertyPath: m_Name
-      value: Virual Camera
+      value: Player1 Virtual Camera
       objectReference: {fileID: 0}
     - target: {fileID: 8260792331324855649, guid: eb619c4b9b6d69847925085153365459, type: 3}
       propertyPath: m_LocalPosition.x

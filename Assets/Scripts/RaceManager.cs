@@ -46,7 +46,7 @@ public class RaceManager : MonoBehaviour
 
         carTransfromList.Add(car1.transform);
 
-        camController = FindObjectOfType<CameraController>();
+        camController = GameObject.Find("Player1 Virtual Camera").GetComponent<CameraController>();
         camController.SetupCamera();
 
         if (multiplayer)
@@ -84,6 +84,8 @@ public class RaceManager : MonoBehaviour
             nextCheckpointSingleIndexList.Add(0);
         }
 
+        finish.SetActive(false);
+
         UI = FindObjectOfType<UIGame>();
         StartCoroutine(CountDown());
     }
@@ -96,19 +98,26 @@ public class RaceManager : MonoBehaviour
             //Correct Checkpoint
             Debug.Log("Correct");
             CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
-            correctCheckpointSingle.Hide();
+            //correctCheckpointSingle.Hide();
 
-            nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count; ;
-            OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
+            nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1);
+            //OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             //Wrong Checkpoint
             Debug.Log("Wrong");
-            OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
+            //OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
             CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
-            correctCheckpointSingle.Show();
+            //correctCheckpointSingle.Show();
         }
+
+        if (nextCheckpointSingleIndex == checkpointSingleList.Count)
+        {
+            Debug.Log("test");
+            finish.SetActive(true);
+        }
+        Debug.Log(nextCheckpointSingleIndex);
     }
 
     IEnumerator CountDown()
@@ -126,9 +135,9 @@ public class RaceManager : MonoBehaviour
         flyingCarMovement.canMove = true;
         if (flyingCarMovementPlayer2 != null)
             flyingCarMovementPlayer2.canMove = true;
+        UI.startTimer = true;
         yield return new WaitForSeconds(1f);
         UIText.text = "";
-        UI.startTimer = true;
     }
 
     void Start()

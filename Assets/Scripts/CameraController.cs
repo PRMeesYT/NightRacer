@@ -35,9 +35,6 @@ public class CameraController : MonoBehaviour
 
     public void SetupCamera2()
     {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-            playerSpawned = true;
-
             player = GameObject.FindGameObjectWithTag("Player2").transform;
             playerSpawned = true;
     }

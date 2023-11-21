@@ -32,6 +32,7 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private FlyingCarMovement flyingCarMovementPlayer2;
     UIGame UI;
     CameraController camController;
+    CameraController camController2;
 
     private void Awake()
     {
@@ -59,6 +60,9 @@ public class RaceManager : MonoBehaviour
             flyingCarMovementPlayer2.player = 2;
 
             carTransfromList.Add(car2.transform);
+
+            camController2 = GameObject.Find("Player2 Virual Camera").GetComponent<CameraController>();
+            camController2.SetupCamera2();
         }
 
 

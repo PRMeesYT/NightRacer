@@ -79,11 +79,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44fc63b9accd96046913c5fb66b9b50f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLocation: {fileID: 0}
+  startLocation:
+  - {fileID: 0}
+  - {fileID: 0}
   hoverCar: {fileID: 689851832646077403, guid: acc147e38fabac64898754021901e445, type: 3}
   carTransfromList: []
   finish: {fileID: 0}
-  multiplayer: 0
+  multiplayer: 1
   UIText: {fileID: 0}
   flyingCarMovement: {fileID: 0}
   flyingCarMovementPlayer2: {fileID: 0}

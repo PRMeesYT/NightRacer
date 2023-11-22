@@ -6,6 +6,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
     private GameManager gameManager;
+    private FlyingCarMovement carMovement;
     private List<Action> powerUps = new List<Action>();
     public bool speedBoostActive = false;
     public bool antiCollisionActive = false;
@@ -14,6 +15,7 @@ public class PowerUp : MonoBehaviour
     private void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        carMovement = FindObjectOfType<FlyingCarMovement>();
         powerUps.Add(SpeedBoost);
         powerUps.Add(AntiCollision);
         //powerUps.Add(CoinMagnet);
@@ -21,9 +23,9 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
         ActivateRandomPowerUp();
         gameManager.PowerPickupSound();
+        Destroy(gameObject);
     }
 
     private void ActivateRandomPowerUp()
@@ -50,14 +52,18 @@ public class PowerUp : MonoBehaviour
     IEnumerator ActivateSpeedBoost()
     {
         speedBoostActive = true;
+        carMovement.power += 10;
         yield return new WaitForSeconds(3f);
+        carMovement.power -= 10;
         speedBoostActive = false;
     }
 
     IEnumerator ActivateAntiCollision()
     {
         antiCollisionActive = true;
+        carMovement.disableCollision();
         yield return new WaitForSeconds(3f);
+        carMovement.disableCollision();
         antiCollisionActive = false;
     }
     IEnumerator ActivateCoinMagnet()

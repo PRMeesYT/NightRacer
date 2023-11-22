@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlyingCarMovement : MonoBehaviour
 {
-    public float power;
+    public float power = 10f;
     public float maxAngle;
 
     private float _forward;
@@ -14,6 +14,8 @@ public class FlyingCarMovement : MonoBehaviour
     private float _angle;
     private float _brake;
 
+    private bool collisionEnabled = true;
+
     public AudioClip hoverSound;
 
     public List<GameObject> springs;
@@ -22,6 +24,7 @@ public class FlyingCarMovement : MonoBehaviour
     public GameObject prop;
 
     Rigidbody rb;
+    Collider objectCollider;
 
     UIGame UI;
     CameraController camController;
@@ -29,7 +32,7 @@ public class FlyingCarMovement : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlaySFX(hoverSound, 1);
-
+        objectCollider = GetComponent<Collider>();
         camController = FindObjectOfType<CameraController>();
         camController.SetupCamera();
         UI = FindObjectOfType<UIGame>();
@@ -92,6 +95,20 @@ public class FlyingCarMovement : MonoBehaviour
         if (_up > 0)
         {
             transform.position += Vector3.up * power * Time.deltaTime;
+        }
+    }
+
+    public void disableCollision()
+    {
+        if (collisionEnabled)
+        {
+            objectCollider.isTrigger = true;
+            collisionEnabled = false;
+        }
+        else
+        {
+            objectCollider.isTrigger = false;
+            collisionEnabled = true;
         }
     }
 }

@@ -25,8 +25,8 @@ public class FlyingCarMovement : MonoBehaviour
 
     void Start()
     {
-        UI = FindObjectOfType<UIGame>();
-        UI.GetComponents();
+        //UI = FindObjectOfType<UIGame>();
+        //UI.GetComponents();
 
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
@@ -58,5 +58,10 @@ public class FlyingCarMovement : MonoBehaviour
         }
 
         rb.AddForce(-Time.deltaTime * transform.TransformDirection(Vector3.right) * transform.InverseTransformVector(rb.velocity).x * 5f);
+    }
+
+    public void DisableCollision()
+    {
+
     }
 }

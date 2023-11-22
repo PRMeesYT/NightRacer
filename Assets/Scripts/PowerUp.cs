@@ -61,9 +61,9 @@ public class PowerUp : MonoBehaviour
     IEnumerator ActivateAntiCollision()
     {
         antiCollisionActive = true;
-        carMovement.disableCollision();
+        carMovement.DisableCollision();
         yield return new WaitForSeconds(3f);
-        carMovement.disableCollision();
+        carMovement.DisableCollision();
         antiCollisionActive = false;
     }
     IEnumerator ActivateCoinMagnet()

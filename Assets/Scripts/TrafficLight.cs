@@ -65,7 +65,7 @@ public class TrafficLight : MonoBehaviour
 
     IEnumerator StartTrafficLights()
     {
-        //AudioManager.Instance.PlaySFX(trafficSoundSFX, 1);
+        AudioManager.Instance.PlaySFX(trafficSoundSFX, 1);
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Red;
         yield return new WaitForSeconds(1f);
@@ -76,8 +76,8 @@ public class TrafficLight : MonoBehaviour
 
     private void StartGame()
     {
-        //flyingCarMovement.canMove = true;
-        //if (flyingCarMovementPlayer2 != null)
+        flyingCarMovement.canMove = true;
+        //if (flyingCarMovement.Pl != null)
         //    flyingCarMovementPlayer2.canMove = true;
         //UI.startTimer = true;
     }

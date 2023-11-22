@@ -31,7 +31,7 @@ public class FlyingCarMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
 
-        //canMove = false;
+        canMove = false;
     }
 
     void Update()

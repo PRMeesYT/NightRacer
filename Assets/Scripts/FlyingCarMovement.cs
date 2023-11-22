@@ -25,17 +25,18 @@ public class FlyingCarMovement : MonoBehaviour
 
     void Start()
     {
-        UI = FindObjectOfType<UIGame>();
-        UI.GetComponents();
+        //UI = FindObjectOfType<UIGame>();
+        //UI.GetComponents();
 
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
 
-        canMove = false;
+        //canMove = false;
     }
 
     void Update()
     {
+        Debug.Log(horizontal);
         if (canMove && player == 1)
         {
             vertical = Input.GetAxis("Vertical");

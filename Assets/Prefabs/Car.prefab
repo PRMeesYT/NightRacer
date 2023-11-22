@@ -2165,7 +2165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8125151815267317887
 Transform:
   m_ObjectHideFlags: 0
@@ -2253,16 +2253,15 @@ MonoBehaviour:
   maxSpeed: 50
   _centerOfMass: {x: 0, y: 0, z: 0}
   carVisual: {fileID: 5429259035105853989}
-  trails: []
   brakeLights: {fileID: 0}
   reverseLights: {fileID: 0}
+  trails: []
   smoke: []
   groundCheck: {fileID: 0}
   groundMask:
     serializedVersion: 2
     m_Bits: 0
   rb: {fileID: 0}
-  canShoot: 0
   canMove: 0
   accelHigh: {fileID: 0}
   decelHigh: {fileID: 0}

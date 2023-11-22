@@ -9,6 +9,8 @@ public class CameraController : MonoBehaviour
 
     public bool playerSpawned;
 
+    public int cam;
+
     Transform player;
 
     void Start()
@@ -29,5 +31,11 @@ public class CameraController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerSpawned = true;
+    }
+
+    public void SetupCamera2()
+    {
+            player = GameObject.FindGameObjectWithTag("Player2").transform;
+            playerSpawned = true;
     }
 }

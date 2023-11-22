@@ -23,7 +23,7 @@ public class CheckpointSingle : MonoBehaviour
     {
         if (other.TryGetComponent<FlyingCarMovement>(out FlyingCarMovement flyingCar))
         {
-            raceManager.carThroughCheckpoint(this, other.transform);
+            raceManager.CarThroughCheckpoint(this, other.transform);
         }
     }
 

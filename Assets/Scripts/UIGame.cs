@@ -21,7 +21,16 @@ public class UIGame : MonoBehaviour
     public float currentTimer;
     public bool countDown;
 
+    [SerializeField] private Camera p1Cam;
+    [SerializeField] private Camera p2Cam;
+
     Rigidbody carRigidbody;
+    RaceManager raceManager;
+
+    private void Awake()
+    {
+        raceManager = FindObjectOfType<RaceManager>();
+    }
 
     void Start()
     {
@@ -54,7 +63,10 @@ public class UIGame : MonoBehaviour
     void Update()
     {
         if (startTimer)
+        {
             EventManager.OnTimerStart();
+            startTimer = false;
+        }
 
         if (car != null)
         {
@@ -72,5 +84,22 @@ public class UIGame : MonoBehaviour
     {
         car = GameObject.FindGameObjectWithTag("Player").gameObject;
         carRigidbody = car.GetComponent<Rigidbody>();
+    }
+
+    public void Finish()
+    {
+        EventManager.OnTimerStop();
+
+        raceManager.UIText.text = "Finish!!!";
+    }
+
+    public void Player1Wins()
+    {
+        raceManager.UIText.text = "Player1 Wins!!!";
+    }
+
+    public void Player2Wins()
+    {
+        raceManager.UIText.text = "Player2 Wins!!!";
     }
 }

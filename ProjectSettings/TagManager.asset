@@ -3,8 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Player2
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -12,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
+  - Post Processing
   - 
   - 
   - 
-  - Player1 Cam
-  - Player2 Cam
+  - 
+  - 
   - 
   - 
   - 

@@ -1,0 +1,4 @@
+er zitten 3 emmison textures bij dit model. 
+de bedoeling is dat textures dus veranderen als dit met iets van code zou kunnen fijn.
+
+ook heeft branden een animatie gemaakt bij dit model dus jullie moeten maar effe zien of die animatie goed werkt. 

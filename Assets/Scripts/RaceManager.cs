@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,8 @@ public class RaceManager : MonoBehaviour
 {
     public event EventHandler OnPlayerCorrectCheckpoint;
     public event EventHandler OnPlayerWrongCheckpoint;
+
+    public TextMeshProUGUI UIText;
 
     public Transform[] startLocation;
 
@@ -28,10 +31,19 @@ public class RaceManager : MonoBehaviour
 
     public bool multiplayer;
 
-    public TextMeshProUGUI UIText;
-
     [SerializeField] private FlyingCarMovement flyingCarMovement;
     [SerializeField] private FlyingCarMovement flyingCarMovementPlayer2;
+
+    [Space(10)]
+
+    // These Static Variables are accessed in "checkpoint" Script
+    public Transform[] checkPointArray;
+    public static Transform[] checkpointA;
+    public static int currentCheckpoint = 0;
+    public static int currentLap = 0;
+    public Vector3 startPos;
+    public int Lap;
+
     UIGame UI;
     CameraController camController;
     CameraController camController2;
@@ -65,6 +77,10 @@ public class RaceManager : MonoBehaviour
 
             camController2 = GameObject.Find("Player2 Virual Camera").GetComponent<CameraController>();
             camController2.SetupCamera2();
+
+            startPos = transform.position;
+            currentCheckpoint = 0;
+            currentLap = 0;
         }
 
         if (!multiplayer)
@@ -149,6 +165,18 @@ public class RaceManager : MonoBehaviour
         UIText.text = "";
     }
 
+    public void ResetCar(FlyingCarMovement flyingCar)
+    {
+        StartCoroutine(OutofBounce(flyingCar));
+    }
+
+    IEnumerator OutofBounce(FlyingCarMovement flyingCar)
+    {
+        yield return new WaitForSeconds(.1f);
+        flyingCar.gameObject.transform.position = startLocation[0].position;
+        flyingCar.rb.velocity = Vector3.zero;
+    }
+
     void Start()
     {
 
@@ -156,6 +184,14 @@ public class RaceManager : MonoBehaviour
 
     void Update()
     {
-
+        if (multiplayer)
+        {
+            Lap = currentLap;
+            checkpointA = checkPointArray;
+        }
+        else
+        {
+            return;
+        }
     }
 }

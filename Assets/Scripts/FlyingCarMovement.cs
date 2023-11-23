@@ -17,9 +17,9 @@ public class FlyingCarMovement : MonoBehaviour
 
     public bool canMove;
 
-    public float player;
+    public int player;
 
-    Rigidbody rb;
+    public Rigidbody rb;
 
     UIGame UI;
 

@@ -1393,10 +1393,10 @@ MonoBehaviour:
     value: 0.7
   threshold:
     overrideState: 1
-    value: 0.75
+    value: 0.8
   softKnee:
     overrideState: 0
-    value: 0.5
+    value: 0.936
   clamp:
     overrideState: 0
     value: 65472
@@ -1405,7 +1405,7 @@ MonoBehaviour:
     value: 7
   anamorphicRatio:
     overrideState: 0
-    value: 0
+    value: 0.69
   color:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -1413,12 +1413,12 @@ MonoBehaviour:
     overrideState: 0
     value: 0
   dirtTexture:
-    overrideState: 0
-    value: {fileID: 0}
+    overrideState: 1
+    value: {fileID: 2800000, guid: ce5f7b0980847ef4baaa53542c4ac6e3, type: 3}
     defaultState: 1
   dirtIntensity:
-    overrideState: 0
-    value: 0
+    overrideState: 1
+    value: 10
 --- !u!114 &5905683434694749341
 MonoBehaviour:
   m_ObjectHideFlags: 3

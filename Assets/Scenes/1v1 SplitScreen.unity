@@ -576,10 +576,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 890214808}
     - target: {fileID: 93819904340389412, guid: 0ce47075258eb77478671bca9e11340c, type: 3}
-      propertyPath: finish
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 93819904340389412, guid: 0ce47075258eb77478671bca9e11340c, type: 3}
       propertyPath: startLocation.Array.data[0]
       value: 
       objectReference: {fileID: 944788434}
@@ -704,14 +700,6 @@ PrefabInstance:
     - target: {fileID: 910879570727962608, guid: 664fb62e4b0eec64db35d30fdae65ee4, type: 3}
       propertyPath: m_Name
       value: Ground
-      objectReference: {fileID: 0}
-    - target: {fileID: 1965259327097502855, guid: 664fb62e4b0eec64db35d30fdae65ee4, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5690942424230470151, guid: 664fb62e4b0eec64db35d30fdae65ee4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 5.304415
       objectReference: {fileID: 0}
     - target: {fileID: 5690942424230470151, guid: 664fb62e4b0eec64db35d30fdae65ee4, type: 3}
       propertyPath: m_LocalPosition.x

@@ -15,11 +15,15 @@ public class CarLapCounter : MonoBehaviour
 
     public event Action<CarLapCounter> OnPassCheckpoint;
 
+    Transform checkpointPosition;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Checkpoint"))
         {
             Checkpoint checkPoint = other.GetComponent<Checkpoint>();
+
+            checkpointPosition = checkPoint.transform;
 
             if (passedCheckPointNumber + 1 == checkPoint.checkPointNumber)
             {
@@ -47,6 +51,18 @@ public class CarLapCounter : MonoBehaviour
 
                 OnPassCheckpoint.Invoke(this);
             }
+        }
+    }
+
+    public Transform GetCheckpointLocation()
+    {
+        if (checkpointPosition == null)
+        {
+            return null;
+        }
+        else
+        {
+            return checkpointPosition;
         }
     }
 }

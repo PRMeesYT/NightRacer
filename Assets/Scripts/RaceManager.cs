@@ -173,7 +173,14 @@ public class RaceManager : MonoBehaviour
     IEnumerator OutofBounce(FlyingCarMovement flyingCar)
     {
         yield return new WaitForSeconds(.1f);
-        flyingCar.gameObject.transform.position = startLocation[0].position;
+        Transform spawnPosition = flyingCar.gameObject.GetComponent<CarLapCounter>().GetCheckpointLocation();
+
+        if (spawnPosition == null)
+        {
+            spawnPosition = startLocation[1];
+        }
+
+        flyingCar.gameObject.transform.position = spawnPosition.position;
         flyingCar.rb.velocity = Vector3.zero;
     }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Runtime.ConstrainedExecution;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,6 +13,8 @@ public class RaceManager : MonoBehaviour
 {
     public event EventHandler OnPlayerCorrectCheckpoint;
     public event EventHandler OnPlayerWrongCheckpoint;
+
+    public TextMeshProUGUI UIText;
 
     public Transform[] startLocation;
 
@@ -24,12 +27,23 @@ public class RaceManager : MonoBehaviour
 
     public GameObject finish;
 
-    public bool multiplayer;
+    bool finished;
 
-    public TextMeshProUGUI UIText;
+    public bool multiplayer;
 
     [SerializeField] private FlyingCarMovement flyingCarMovement;
     [SerializeField] private FlyingCarMovement flyingCarMovementPlayer2;
+
+    [Space(10)]
+
+    // These Static Variables are accessed in "checkpoint" Script
+    public Transform[] checkPointArray;
+    public static Transform[] checkpointA;
+    public static int currentCheckpoint = 0;
+    public static int currentLap = 0;
+    public Vector3 startPos;
+    public int Lap;
+
     UIGame UI;
     CameraController camController;
     CameraController camController2;
@@ -46,7 +60,7 @@ public class RaceManager : MonoBehaviour
 
         carTransfromList.Add(car1.transform);
 
-        camController = FindObjectOfType<CameraController>();
+        camController = GameObject.Find("Player1 Virtual Camera").GetComponent<CameraController>();
         camController.SetupCamera();
 
         if (multiplayer)
@@ -63,25 +77,36 @@ public class RaceManager : MonoBehaviour
 
             camController2 = GameObject.Find("Player2 Virual Camera").GetComponent<CameraController>();
             camController2.SetupCamera2();
+
+            startPos = transform.position;
+            currentCheckpoint = 0;
+            currentLap = 0;
         }
 
-
-        Transform checkpointTransform = transform.Find("CheckPoints");
-
-        checkpointSingleList = new List<CheckpointSingle>();
-        foreach (Transform checkPointSingleTransform in checkpointTransform)
+        if (!multiplayer)
         {
-            CheckpointSingle checkpointSingle = checkPointSingleTransform.GetComponent<CheckpointSingle>();
+            #region
+            //Transform checkpointTransform = transform.Find("CheckPoints");
 
-            checkpointSingle.SetTrackCheckpoints(this);
+            //checkpointSingleList = new List<CheckpointSingle>();
+            //foreach (Transform checkPointSingleTransform in checkpointTransform)
+            //{
+            //    CheckpointSingle checkpointSingle = checkPointSingleTransform.GetComponent<CheckpointSingle>();
 
-            checkpointSingleList.Add(checkpointSingle);
-        }
+            //    checkpointSingle.SetTrackCheckpoints(this);
 
-        nextCheckpointSingleIndexList = new List<int>();
-        foreach (Transform carTransform in carTransfromList)
-        {
-            nextCheckpointSingleIndexList.Add(0);
+            //    checkpointSingleList.Add(checkpointSingle);
+            //}
+
+            //nextCheckpointSingleIndexList = new List<int>();
+            //foreach (Transform carTransform in carTransfromList)
+            //{
+            //    nextCheckpointSingleIndexList.Add(0);
+            //}
+            #endregion
+            startPos = transform.position;
+            currentCheckpoint = 0;
+            currentLap = 0;
         }
 
         UI = FindObjectOfType<UIGame>();
@@ -90,24 +115,36 @@ public class RaceManager : MonoBehaviour
 
     public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
-        int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)];
-        if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
+        if (!finished)
         {
-            //Correct Checkpoint
-            Debug.Log("Correct");
-            CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
-            correctCheckpointSingle.Hide();
+            int nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)];
+            if (checkpointSingleList.IndexOf(checkpointSingle) == nextCheckpointSingleIndex)
+            {
+                //Correct Checkpoint
+                Debug.Log("Correct");
+                CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
+                correctCheckpointSingle.Hide();
 
-            nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1) % checkpointSingleList.Count; ;
-            OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
-        }
-        else
-        {
-            //Wrong Checkpoint
-            Debug.Log("Wrong");
-            OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
-            CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
-            correctCheckpointSingle.Show();
+                nextCheckpointSingleIndex = nextCheckpointSingleIndexList[carTransfromList.IndexOf(carTransform)] = (nextCheckpointSingleIndex + 1);
+                OnPlayerCorrectCheckpoint?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                //Wrong Checkpoint
+                Debug.Log("Wrong");
+                OnPlayerWrongCheckpoint?.Invoke(this, EventArgs.Empty);
+                CheckpointSingle correctCheckpointSingle = checkpointSingleList[nextCheckpointSingleIndex];
+                correctCheckpointSingle.Show();
+            }
+
+            if (nextCheckpointSingleIndex == checkpointSingleList.Count)
+            {
+                Debug.Log("test");
+                finish.SetActive(true);
+                finished = true;
+            }
+
+            Debug.Log(nextCheckpointSingleIndex);
         }
     }
 
@@ -126,9 +163,28 @@ public class RaceManager : MonoBehaviour
         flyingCarMovement.canMove = true;
         if (flyingCarMovementPlayer2 != null)
             flyingCarMovementPlayer2.canMove = true;
+        UI.startTimer = true;
         yield return new WaitForSeconds(1f);
         UIText.text = "";
-        UI.startTimer = true;
+    }
+
+    public void ResetCar(FlyingCarMovement flyingCar)
+    {
+        StartCoroutine(OutofBounce(flyingCar));
+    }
+
+    IEnumerator OutofBounce(FlyingCarMovement flyingCar)
+    {
+        yield return new WaitForSeconds(.1f);
+        Transform spawnPosition = flyingCar.gameObject.GetComponent<CarLapCounter>().GetCheckpointLocation();
+
+        if (spawnPosition == null)
+        {
+            spawnPosition = startLocation[0];
+        }
+
+        flyingCar.gameObject.transform.position = spawnPosition.position;
+        flyingCar.rb.velocity = Vector3.zero;
     }
 
     void Start()
@@ -138,6 +194,14 @@ public class RaceManager : MonoBehaviour
 
     void Update()
     {
-
+        if (multiplayer)
+        {
+            Lap = currentLap;
+            checkpointA = checkPointArray;
+        }
+        else
+        {
+            return;
+        }
     }
 }

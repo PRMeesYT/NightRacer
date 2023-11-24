@@ -23,10 +23,10 @@ public class CarLapCounter : MonoBehaviour
         {
             Checkpoint checkPoint = other.GetComponent<Checkpoint>();
 
-            checkpointPosition = checkPoint.transform;
-
             if (passedCheckPointNumber + 1 == checkPoint.checkPointNumber)
             {
+                checkpointPosition = checkPoint.transform;
+
                 passedCheckPointNumber = checkPoint.checkPointNumber;
 
                 numberOfPassedCheckpoints++;

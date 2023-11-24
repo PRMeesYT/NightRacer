@@ -95,9 +95,9 @@ GameObject:
   - component: {fileID: 7077782134273261974}
   - component: {fileID: 4118781498130576099}
   - component: {fileID: 8015621010609386199}
-  - component: {fileID: -6039195509278024257}
+  - component: {fileID: 8925880415220917320}
   m_Layer: 0
-  m_Name: HoverCar
+  m_Name: HoverCarMultiplayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,7 +202,7 @@ MonoBehaviour:
   canMove: 1
   player: 0
   rb: {fileID: 0}
---- !u!114 &-6039195509278024257
+--- !u!114 &8925880415220917320
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eda7dedab4ca1c488865bc4d617cf27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapsToComplete: 2
+  lapsToComplete: 1
 --- !u!1 &1098780145685686072
 GameObject:
   m_ObjectHideFlags: 0

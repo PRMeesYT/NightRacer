@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -77,7 +78,7 @@ public class Finish : MonoBehaviour
         }
         else
         {
-            medalImage.sprite = none;
+            Destroy(medalImage.gameObject);
         }
     }
 }

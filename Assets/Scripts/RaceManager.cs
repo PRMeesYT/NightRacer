@@ -85,25 +85,28 @@ public class RaceManager : MonoBehaviour
 
         if (!multiplayer)
         {
-            Transform checkpointTransform = transform.Find("CheckPoints");
+            #region
+            //Transform checkpointTransform = transform.Find("CheckPoints");
 
-            checkpointSingleList = new List<CheckpointSingle>();
-            foreach (Transform checkPointSingleTransform in checkpointTransform)
-            {
-                CheckpointSingle checkpointSingle = checkPointSingleTransform.GetComponent<CheckpointSingle>();
+            //checkpointSingleList = new List<CheckpointSingle>();
+            //foreach (Transform checkPointSingleTransform in checkpointTransform)
+            //{
+            //    CheckpointSingle checkpointSingle = checkPointSingleTransform.GetComponent<CheckpointSingle>();
 
-                checkpointSingle.SetTrackCheckpoints(this);
+            //    checkpointSingle.SetTrackCheckpoints(this);
 
-                checkpointSingleList.Add(checkpointSingle);
-            }
+            //    checkpointSingleList.Add(checkpointSingle);
+            //}
 
-            nextCheckpointSingleIndexList = new List<int>();
-            foreach (Transform carTransform in carTransfromList)
-            {
-                nextCheckpointSingleIndexList.Add(0);
-            }
-
-            finish.SetActive(false);
+            //nextCheckpointSingleIndexList = new List<int>();
+            //foreach (Transform carTransform in carTransfromList)
+            //{
+            //    nextCheckpointSingleIndexList.Add(0);
+            //}
+            #endregion
+            startPos = transform.position;
+            currentCheckpoint = 0;
+            currentLap = 0;
         }
 
         UI = FindObjectOfType<UIGame>();
@@ -177,7 +180,7 @@ public class RaceManager : MonoBehaviour
 
         if (spawnPosition == null)
         {
-            spawnPosition = startLocation[1];
+            spawnPosition = startLocation[0];
         }
 
         flyingCar.gameObject.transform.position = spawnPosition.position;

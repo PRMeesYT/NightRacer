@@ -16,6 +16,8 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerSpawned = true;
     }
 
     private void Update()
@@ -29,8 +31,7 @@ public class CameraController : MonoBehaviour
 
     public void SetupCamera()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerSpawned = true;
+       
     }
 
     public void SetupCamera2()

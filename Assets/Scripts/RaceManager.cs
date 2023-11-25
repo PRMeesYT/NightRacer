@@ -110,7 +110,7 @@ public class RaceManager : MonoBehaviour
         }
 
         UI = FindObjectOfType<UIGame>();
-        StartCoroutine(CountDown());
+        //StartCoroutine(CountDown());
     }
 
     public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)

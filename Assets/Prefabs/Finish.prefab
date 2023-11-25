@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 676278989578335392}
   - component: {fileID: 4639028868710953102}
   - component: {fileID: 8265229633966559501}
-  - component: {fileID: 6202246820678536403}
+  - component: {fileID: -7419824896625232193}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Untagged
@@ -278,7 +278,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6202246820678536403
+--- !u!114 &-7419824896625232193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,12 +287,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7652013029019975684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597f1f98b8c38c248b8cac8de689ef13, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a25e51523cdb5545b8862d0fcbc5116, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
-  medal: {fileID: 4408912063973101009, guid: 96c715d7612303242bf6149f42a5690b, type: 3}
-  goldMedal: {fileID: 21300000, guid: e72fde82a3366e140beea102f73a0c18, type: 3}
-  silverMedal: {fileID: 21300000, guid: e9b25c797c0018d419bddd39c8a2ac7b, type: 3}
-  bronzeMedal: {fileID: 21300000, guid: 4661ecb57b59382439759f12e76a4f5f, type: 3}
-  none: {fileID: 0}
+  finished: 0
+  player: {fileID: 0}

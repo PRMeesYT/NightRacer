@@ -10,6 +10,9 @@ public class FlyingCarMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
 
+    private int playerLayer;
+    private int obstacleLayer;
+
     public List<GameObject> springs;
 
     public GameObject cm;
@@ -20,8 +23,11 @@ public class FlyingCarMovement : MonoBehaviour
     public int player;
 
     public Rigidbody rb;
+    public Collider collider;
 
-    UIGame UI;
+    private bool collisionActive = true;
+
+    //UIGame UI;
 
     void Start()
     {
@@ -31,7 +37,10 @@ public class FlyingCarMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
 
-        canMove = false;
+        canMove = true;
+
+        playerLayer = LayerMask.NameToLayer("Player");
+        obstacleLayer = LayerMask.NameToLayer("CollisionSoms");
     }
 
     void Update()
@@ -62,6 +71,15 @@ public class FlyingCarMovement : MonoBehaviour
 
     public void DisableCollision()
     {
-
+        if (collisionActive)
+        {
+            Physics.IgnoreLayerCollision(playerLayer, obstacleLayer);
+            collisionActive = false;
+        }
+        else if (!collisionActive)
+        {
+            Physics.IgnoreLayerCollision(playerLayer, obstacleLayer, false);
+            collisionActive = true;
+        }
     }
 }

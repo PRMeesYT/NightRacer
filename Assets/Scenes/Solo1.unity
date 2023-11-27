@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &71615405 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4401172028961967984, guid: 90c879438e112d44ebf0847f3ede2299, type: 3}
-  m_PrefabInstance: {fileID: 1394235773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &77007987
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,7 +1001,7 @@ Transform:
   m_GameObject: {fileID: 474303590}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.82, z: 0}
+  m_LocalPosition: {x: 0, y: 2.82, z: -0.03}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1749,10 +1744,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trafficSoundSFX: {fileID: 8300000, guid: cdaaf50ca05382642aa3d07ce7d1a21c, type: 3}
-  greenTrafficLight: {fileID: 1832382027}
-  yellowTrafficLight: {fileID: 1462187157}
-  redTrafficLight: {fileID: 1771465770}
-  OffTrafficLight: {fileID: 71615405}
 --- !u!1 &1369287694 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4510848497308387395, guid: 248887dae7f12f9478fd5fff2e0063d3, type: 3}
@@ -1820,11 +1811,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c879438e112d44ebf0847f3ede2299, type: 3}
---- !u!1 &1462187157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8998087470890161924, guid: 90c879438e112d44ebf0847f3ede2299, type: 3}
-  m_PrefabInstance: {fileID: 1394235773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1515507043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,16 +1844,6 @@ Transform:
   - {fileID: 1181846891}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1771465770 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6237034403744212177, guid: 90c879438e112d44ebf0847f3ede2299, type: 3}
-  m_PrefabInstance: {fileID: 1394235773}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1832382027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7093997662458798798, guid: 90c879438e112d44ebf0847f3ede2299, type: 3}
-  m_PrefabInstance: {fileID: 1394235773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2022577985
 GameObject:
   m_ObjectHideFlags: 0

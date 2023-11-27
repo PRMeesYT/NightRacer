@@ -14,9 +14,9 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
+  - CollisionAltijd
+  - CollisionSoms
+  - Player
   - Player1 Cam
   - Player2 Cam
   - 

@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 133352684721118068}
   - component: {fileID: 2355437166753652629}
   m_Layer: 10
-  m_Name: Player1 Virual Camera
+  m_Name: Player1 Virtual Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: 1.2, z: -4}
+  m_FollowOffset: {x: 0, y: 1.7, z: -4}
   m_XDamping: 1
   m_YDamping: 0.1
   m_ZDamping: 0.3
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 0, y: 1.2, z: -4}
+  m_FollowOffset: {x: 0, y: 1.7, z: -4}
   m_XDamping: 1
   m_YDamping: 0.1
   m_ZDamping: 0.3

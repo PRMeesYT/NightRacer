@@ -6,6 +6,8 @@ public class FinishMultiplayer : MonoBehaviour
 {
     public bool finished;
 
+    public FlyingCarMovement player;
+
     void Start()
     {
 
@@ -16,26 +18,22 @@ public class FinishMultiplayer : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Finish(int player)
     {
         if (!finished)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if (player == 1)
             {
                 UIGame UI = FindObjectOfType<UIGame>();
                 UI.Player1Wins();
 
-                FlyingCarMovement flyingCarMovement = other.GetComponent<FlyingCarMovement>();
-                flyingCarMovement.canMove = false;
                 finished = true;
             }
-            else if (other.gameObject.CompareTag("Player2"))
+            else if (player == 2)
             {
                 UIGame UI = FindObjectOfType<UIGame>();
                 UI.Player2Wins();
 
-                FlyingCarMovement flyingCarMovement = other.GetComponent<FlyingCarMovement>();
-                flyingCarMovement.canMove = false;
                 finished = true;
             }
         }

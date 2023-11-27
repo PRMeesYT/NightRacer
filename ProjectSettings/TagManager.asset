@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Player2
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -11,12 +13,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Post Processing
+  - Ground
   - 
   - 
   - 
-  - 
-  - 
+  - Player1 Cam
+  - Player2 Cam
   - 
   - 
   - 

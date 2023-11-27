@@ -25,6 +25,12 @@ public class UIGame : MonoBehaviour
     [SerializeField] private Camera p2Cam;
 
     Rigidbody carRigidbody;
+    RaceManager raceManager;
+
+    private void Awake()
+    {
+        raceManager = FindObjectOfType<RaceManager>();
+    }
 
     void Start()
     {
@@ -84,17 +90,16 @@ public class UIGame : MonoBehaviour
     {
         EventManager.OnTimerStop();
 
-        RaceManager raceManager = FindObjectOfType<RaceManager>();
         raceManager.UIText.text = "Finish!!!";
     }
 
-    public void Horizontal()
+    public void Player1Wins()
     {
-
+        raceManager.UIText.text = "Player1 Wins!!!";
     }
 
-    public void Vertical()
+    public void Player2Wins()
     {
-
+        raceManager.UIText.text = "Player2 Wins!!!";
     }
 }

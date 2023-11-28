@@ -44,6 +44,18 @@ public class RaceManager : MonoBehaviour
     public Vector3 startPos;
     public int Lap;
 
+    //StartLight
+    enum TrafficLights { Off, Red, Yellow, Green };
+
+    private TrafficLights trafficLigts;
+
+    SkinnedMeshRenderer greenTrafficLight;
+    SkinnedMeshRenderer yellowTrafficLight;
+    SkinnedMeshRenderer redTrafficLight;
+    SkinnedMeshRenderer OffTrafficLight;
+
+    [SerializeField] private AudioClip trafficSoundSFX;
+
     UIGame UI;
     CameraController camController;
     CameraController camController2;
@@ -110,9 +122,10 @@ public class RaceManager : MonoBehaviour
         }
 
         UI = FindObjectOfType<UIGame>();
-        //StartCoroutine(CountDown());
+        StartCoroutine(CountDown());
     }
 
+    #region
     public void CarThroughCheckpoint(CheckpointSingle checkpointSingle, Transform carTransform)
     {
         if (!finished)
@@ -147,25 +160,38 @@ public class RaceManager : MonoBehaviour
             Debug.Log(nextCheckpointSingleIndex);
         }
     }
+    #endregion
 
     IEnumerator CountDown()
     {
         float timer = 3f;
-        UIText.text = "3";
+        UIText.text = "";
+        if (redTrafficLight != null)
+            redTrafficLight.enabled = true;
+
         yield return new WaitForSeconds(1f);
         timer--;
-        UIText.text = "2";
+
+        if (yellowTrafficLight != null)
+        {
+            yellowTrafficLight.enabled = true;
+            redTrafficLight.enabled = false;
+        }
+
         yield return new WaitForSeconds(1f);
         timer--;
-        UIText.text = "1";
-        yield return new WaitForSeconds(1f);
-        UIText.text = "GO";
+
+        if (greenTrafficLight != null)
+        {
+            greenTrafficLight.enabled = true;
+            yellowTrafficLight.enabled = false;
+        }
+
         flyingCarMovement.canMove = true;
         if (flyingCarMovementPlayer2 != null)
             flyingCarMovementPlayer2.canMove = true;
         UI.startTimer = true;
         yield return new WaitForSeconds(1f);
-        UIText.text = "";
     }
 
     public void ResetCar(FlyingCarMovement flyingCar)
@@ -184,12 +210,18 @@ public class RaceManager : MonoBehaviour
         }
 
         flyingCar.gameObject.transform.position = spawnPosition.position;
+        flyingCar.gameObject.transform.rotation = Quaternion.Euler(0, spawnPosition.rotation.y, 0);
         flyingCar.rb.velocity = Vector3.zero;
     }
 
     void Start()
     {
-
+        if (greenTrafficLight != null)
+        {
+            greenTrafficLight.enabled = false;
+            yellowTrafficLight.enabled = false;
+            redTrafficLight.enabled = false;
+        }
     }
 
     void Update()

@@ -34,31 +34,31 @@ public class UIGame : MonoBehaviour
 
     void Start()
     {
-        checkPoints.OnPlayerCorrectCheckpoint += RaceManager_OnPlayerCorrectCheckpoint;
-        checkPoints.OnPlayerWrongCheckpoint += RaceManager_OnPlayerWrongCheckpoint;
+        //checkPoints.OnPlayerCorrectCheckpoint += RaceManager_OnPlayerCorrectCheckpoint;
+        //checkPoints.OnPlayerWrongCheckpoint += RaceManager_OnPlayerWrongCheckpoint;
 
-        Hide();
+        //Hide();
     }
 
-    private void RaceManager_OnPlayerCorrectCheckpoint(object sender, System.EventArgs e)
-    {
-        Hide();
-    }
+    //private void RaceManager_OnPlayerCorrectCheckpoint(object sender, System.EventArgs e)
+    //{
+    //    Hide();
+    //}
 
-    private void RaceManager_OnPlayerWrongCheckpoint(object sender, System.EventArgs e)
-    {
-        Show();
-    }
+    //private void RaceManager_OnPlayerWrongCheckpoint(object sender, System.EventArgs e)
+    //{
+    //    Show();
+    //}
 
-    private void Show()
-    {
-        wrongDir.SetActive(true);
-    }
+    //private void Show()
+    //{
+    //    wrongDir.SetActive(true);
+    //}
 
-    private void Hide()
-    {
-        wrongDir.SetActive(false);
-    }
+    //private void Hide()
+    //{
+    //    wrongDir.SetActive(false);
+    //}
 
     void Update()
     {
@@ -68,7 +68,7 @@ public class UIGame : MonoBehaviour
             startTimer = false;
         }
 
-        if (car != null)
+        if (car != null && speedText != null)
         {
             speed = carRigidbody.velocity.magnitude * 3.6f;
             speedText.text = (int)speed + " kp/h";

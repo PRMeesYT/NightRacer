@@ -16,8 +16,12 @@ public class FlyingCarMovement : MonoBehaviour
     public GameObject prop;
 
     public bool canMove;
+    private bool collisionActive = true;
 
     public int player;
+
+    private int playerLayer;
+    private int obstacleLayer;
 
     public Rigidbody rb;
 
@@ -30,6 +34,9 @@ public class FlyingCarMovement : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
+
+        playerLayer = LayerMask.NameToLayer("Player");
+        obstacleLayer = LayerMask.NameToLayer("Obstacle");
 
         canMove = false;
     }
@@ -58,5 +65,21 @@ public class FlyingCarMovement : MonoBehaviour
         }
 
         rb.AddForce(-Time.deltaTime * transform.TransformDirection(Vector3.right) * transform.InverseTransformVector(rb.velocity).x * 5f);
+    }
+
+    public void DisableCollision()
+    {
+        if (collisionActive)
+        {
+            Debug.Log("Collision Uit");
+            Physics.IgnoreLayerCollision(playerLayer, obstacleLayer);
+            collisionActive = false;
+        }
+        else if (!collisionActive)
+        {
+            Debug.Log("Collision Aan");
+            Physics.IgnoreLayerCollision(playerLayer, obstacleLayer, false);
+            collisionActive = true;
+        }
     }
 }

@@ -24,6 +24,9 @@ public class UIGame : MonoBehaviour
     [SerializeField] private Camera p1Cam;
     [SerializeField] private Camera p2Cam;
 
+    public TextMeshProUGUI Player1Text;
+    public TextMeshProUGUI Player2Text;
+
     Rigidbody carRigidbody;
     RaceManager raceManager;
 
@@ -34,6 +37,9 @@ public class UIGame : MonoBehaviour
 
     void Start()
     {
+        Player1Text.text = "";
+        Player2Text.text = "";
+
         checkPoints.OnPlayerCorrectCheckpoint += RaceManager_OnPlayerCorrectCheckpoint;
         checkPoints.OnPlayerWrongCheckpoint += RaceManager_OnPlayerWrongCheckpoint;
 

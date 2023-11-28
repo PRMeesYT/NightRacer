@@ -12,7 +12,7 @@ public class PowerUp : MonoBehaviour
     public bool antiCollisionActive = false;
     public bool coinMagnetActive = false;
     private int powerUpTime = 3;
-    MeshRenderer powerUp;
+    private MeshRenderer powerUp;
 
     private void Start()
     {
@@ -59,8 +59,10 @@ public class PowerUp : MonoBehaviour
         speedBoostActive = true;
         powerUp.enabled = false;
         carMovement.power += 10;
+        Debug.Log("Snelheid: " + carMovement.power);
         yield return new WaitForSeconds(powerUpTime);
         carMovement.power -= 10;
+        Debug.Log("Snelheid: " + carMovement.power);
         speedBoostActive = false;
         Destroy(gameObject);
     }

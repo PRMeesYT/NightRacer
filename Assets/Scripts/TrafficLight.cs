@@ -7,7 +7,6 @@ public class TrafficLight : MonoBehaviour
     enum TrafficLights { Off, Red, Yellow, Green};
 
     private TrafficLights trafficLigts;
-    private Animation anim;
 
     FlyingCarMovement flyingCarMovement;
     SkinnedMeshRenderer greenTrafficLight;

@@ -24,6 +24,7 @@ public class FlyingCarMovement : MonoBehaviour
 
     public Rigidbody rb;
     public Collider collider;
+    private GameManager gameManager;
 
     private bool collisionActive = true;
 
@@ -39,12 +40,19 @@ public class FlyingCarMovement : MonoBehaviour
 
         canMove = true;
 
+        gameManager = FindObjectOfType<GameManager>();
+
         playerLayer = LayerMask.NameToLayer("Player");
         obstacleLayer = LayerMask.NameToLayer("CollisionSoms");
     }
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.W))
+        {
+            gameManager.CarSound();
+        }
+
         if (canMove && player == 1)
         {
             vertical = Input.GetAxis("Vertical");

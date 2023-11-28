@@ -82,11 +82,11 @@ public class CarLapCounter : MonoBehaviour
         {
             if (lapsCompleted == lapsToComplete - 1)
             {
-                UI.Player2Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                UI.Player2Text.text = "Final Lap";
             }
             else
             {
-                UI.Player2Text.text = "Final Lap";
+                UI.Player2Text.text = "Lap " + (lapsCompleted + 1).ToString();
             }
         }
 

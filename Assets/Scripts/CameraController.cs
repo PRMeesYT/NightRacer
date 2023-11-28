@@ -9,8 +9,6 @@ public class CameraController : MonoBehaviour
 
     public bool playerSpawned;
 
-    public int cam;
-
     Transform player;
 
     void Start()

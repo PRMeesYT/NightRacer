@@ -1410,7 +1410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4510848497308387395, guid: 248887dae7f12f9478fd5fff2e0063d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4980260342840334422, guid: 248887dae7f12f9478fd5fff2e0063d3, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2022,9 +2022,11 @@ MonoBehaviour:
   settingsMenu: {fileID: 777905625}
   buttonClickSFX: {fileID: 8300000, guid: 3d4c6d23a35de52469b71e46614ad519, type: 3}
   buttonHoverSFX: {fileID: 8300000, guid: aba02407984296947843358beb2734e6, type: 3}
-  raceStartSFX: {fileID: 8300000, guid: 6b3d679e96914864e8995a7e7e46663d, type: 3}
   powerUpPickupSFX: {fileID: 8300000, guid: dcf9c45b5ad905e49b0f448dcf5dca42, type: 3}
+  rainSFX: {fileID: 8300000, guid: f49742e4d0e0e104cb08f1e42ba61c31, type: 3}
   winSoundSFX: {fileID: 8300000, guid: 227ac85055df0d64aab1bd9b844bb1e2, type: 3}
+  medalSound: {fileID: 8300000, guid: ed1e2cb6f99e6b14aaee47114d924cd1, type: 3}
+  carSFX: {fileID: 8300000, guid: e93323419959a174c8c0a2398ddf89d6, type: 3}
   music1: {fileID: 8300000, guid: 6b03f4e88ec15d74983b2a8a081ed1b3, type: 3}
   music2: {fileID: 8300000, guid: 820c1ef8471bfe94d873ab7def97bcb7, type: 3}
 --- !u!4 &1181846891

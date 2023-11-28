@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -11,17 +9,58 @@ public class ScoreManager : MonoBehaviour
 
     int score;
 
-    void Start()
+    private const string lapTimesKey = "SavedLapTimes";
+
+    private void Start()
     {
-        
+        SaveLapTime(100);
     }
 
-    void Update()
+    public void SaveLapTime(float lapTime)
     {
-        
+        List<float> lapTimes = new List<float>();
+
+        if (PlayerPrefs.HasKey(lapTimesKey))
+        {
+            string[] lapTimesString = PlayerPrefs.GetString(lapTimesKey).Split(';');
+
+            foreach (string time in lapTimesString)
+            {
+                if (!string.IsNullOrEmpty(time))
+                {
+                    lapTimes.Add(float.Parse(time));
+                }
+            }
+        }
+
+        lapTimes.Add(lapTime);
+        string lapTimesToSave = string.Join(";", lapTimes);
+
+        PlayerPrefs.SetString(lapTimesKey, lapTimesToSave);
+        PlayerPrefs.Save();
     }
 
-    public void Level1(float time)
+    public List<float> GetSavedLapTimes()
+    {
+        List<float> lapTimes = new List<float>();
+
+        if (PlayerPrefs.HasKey(lapTimesKey))
+        {
+            string[] lapTimesString = PlayerPrefs.GetString(lapTimesKey).Split(';');
+
+            foreach (string time in lapTimesString)
+            {
+                if (!string.IsNullOrEmpty(time))
+                {
+                    lapTimes.Add(float.Parse(time));
+                }
+            }
+        }
+
+        return lapTimes;
+    }
+
+        public void Level1(float time)
     {
         if (time <= goldTime)
         {
@@ -42,6 +81,8 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
 
         Finish finish = FindObjectOfType<Finish>();
 
@@ -66,6 +107,8 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
     }
 
     public void Level3(float time)
@@ -86,6 +129,8 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
     }
 
     public void Level4(float time)
@@ -106,5 +151,7 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
     }
 }

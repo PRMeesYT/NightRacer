@@ -17,9 +17,11 @@ public class Finish : MonoBehaviour
     public Sprite bronzeMedal;
     public Sprite none;
 
+    private GameManager gameManager;
+
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            gameManager.FinishSound();
             UIGame UI = FindObjectOfType<UIGame>();
             UI.Finish();
 

@@ -8,26 +8,39 @@ public class GameManager : MonoBehaviour
 
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
-    public AudioClip raceStartSFX;
     public AudioClip powerUpPickupSFX;
+    public AudioClip rainSFX;
     public AudioClip winSoundSFX;
+    public AudioClip medalSound;
+    public AudioClip carSFX;
     public AudioClip music1;
     public AudioClip music2;
 
     private bool pauseOpen = false;
     private bool settingsOpen = false;
 
+    private void Start()
+    {
+        AudioManager.Instance.PlaySFX(rainSFX, 1);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseMenu();
+            ClickSound();
         }
     }
 
     public void HoverSound()
     {
         AudioManager.Instance.PlaySFX(buttonHoverSFX, 1);
+    }
+
+    public void CarSound()
+    {
+        AudioManager.Instance.PlaySFX(carSFX, 1);
     }
 
     public void ClickSound()
@@ -38,6 +51,16 @@ public class GameManager : MonoBehaviour
     public void PowerPickupSound()
     {
         AudioManager.Instance.PlaySFX(powerUpPickupSFX, 1);
+    }
+
+    public void FinishSound()
+    {
+        AudioManager.Instance.PlaySFX(winSoundSFX, 1);
+    }
+
+    public void MedalSound()
+    {
+        AudioManager.Instance.PlaySFX(medalSound, 1);
     }
 
     public void MainMenu()

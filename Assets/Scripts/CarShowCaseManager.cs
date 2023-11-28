@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CarShowCaseManager : MonoBehaviour
 {
@@ -13,6 +14,12 @@ public class CarShowCaseManager : MonoBehaviour
     public bool[] carUnlocked = new bool[4];
 
     public int points;
+    public int carSelected;
+
+    public Image play;
+
+    bool canPlay;
+    bool canSelect;
 
     [SerializeField] private TextMeshProUGUI pointsText;
 
@@ -20,9 +27,17 @@ public class CarShowCaseManager : MonoBehaviour
     {
         pointsText.text = "Points: " + points;
         carUnlocked[0] = true;
-        foreach (GameObject model in carModels)
+        if (carUnlocked != null)
         {
-            model.SetActive(false);
+            foreach (GameObject model in carModels)
+            {
+                model.SetActive(false);
+            }
+        }
+
+        if (play != null)
+        {
+            play.color = Color.gray;
         }
     }
 
@@ -33,13 +48,17 @@ public class CarShowCaseManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (canPlay)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 
     public void Car1()
     {
         if (carUnlocked[0] == true)
         {
+            canSelect = true;
             foreach (GameObject model in carModels)
             {
                 model.SetActive(false);
@@ -52,6 +71,7 @@ public class CarShowCaseManager : MonoBehaviour
     {
         if (carUnlocked[1] == true)
         {
+            canSelect = true;
             foreach (GameObject model in carModels)
             {
                 model.SetActive(false);
@@ -76,6 +96,7 @@ public class CarShowCaseManager : MonoBehaviour
     {
         if (carUnlocked[2] == true)
         {
+            canSelect = true;
             foreach (GameObject model in carModels)
             {
                 model.SetActive(false);
@@ -100,6 +121,7 @@ public class CarShowCaseManager : MonoBehaviour
     {
         if (carUnlocked[3] == true)
         {
+            canSelect = true;
             foreach (GameObject model in carModels)
             {
                 model.SetActive(false);
@@ -117,6 +139,15 @@ public class CarShowCaseManager : MonoBehaviour
                 model.SetActive(false);
             }
             carModels[3].SetActive(true);
+        }
+    }
+
+    public void Select()
+    {
+        if (canSelect)
+        {
+            canPlay = true;
+            play.color = Color.white;
         }
     }
 }

@@ -9,6 +9,8 @@ public class ScoreManager : MonoBehaviour
     public float silverTime;
     public float bronzeTime;
 
+    int score;
+
     void Start()
     {
         
@@ -24,19 +26,26 @@ public class ScoreManager : MonoBehaviour
         if (time <= goldTime)
         {
             Debug.Log("Gold " + time);
+            score = 1;
         }
         else if (time > goldTime && time <= silverTime)
         {
             Debug.Log("Silver " + time);
+            score = 2;
         }
         else if(time > silverTime && time <= bronzeTime)
         {
             Debug.Log("Bronze " + time);
+            score = 3;
         }
         else
         {
             Debug.Log(time);
         }
+
+        Finish finish = FindObjectOfType<Finish>();
+
+        finish.StartFinish(score);
     }
 
     public void Level2(float time)

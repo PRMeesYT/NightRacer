@@ -11,11 +11,6 @@ public class ScoreManager : MonoBehaviour
 
     private const string lapTimesKey = "SavedLapTimes";
 
-    private void Start()
-    {
-        SaveLapTime(100);
-    }
-
     public void SaveLapTime(float lapTime)
     {
         List<float> lapTimes = new List<float>();

@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject lapTimes;
 
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private bool pauseOpen = false;
     private bool settingsOpen = false;
+    private bool lapTimesOpen = false;
 
     private void Start()
     {
@@ -100,6 +102,24 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(true);
             settingsOpen = true;
+        }
+    }
+
+        public void LapTImes()
+    {
+        if (pauseOpen)
+        {
+            lapTimes.SetActive(false);
+            lapTimesOpen = false;
+            pauseMenu.SetActive(true);
+            pauseOpen = true;
+        }
+        else if (!pauseOpen)
+        {
+            lapTimes.SetActive(true);
+            lapTimesOpen = true;
+            pauseMenu.SetActive(false);
+            pauseOpen = false;
         }
     }
 

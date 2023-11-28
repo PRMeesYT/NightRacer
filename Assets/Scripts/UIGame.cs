@@ -37,11 +37,14 @@ public class UIGame : MonoBehaviour
 
     void Start()
     {
-        Player1Text.text = "";
-        Player2Text.text = "";
+        if (Player1Text != null)
+        {
+            Player1Text.text = "";
+            Player2Text.text = "";
+        }
 
-        checkPoints.OnPlayerCorrectCheckpoint += RaceManager_OnPlayerCorrectCheckpoint;
-        checkPoints.OnPlayerWrongCheckpoint += RaceManager_OnPlayerWrongCheckpoint;
+        //checkPoints.OnPlayerCorrectCheckpoint += RaceManager_OnPlayerCorrectCheckpoint;
+        //checkPoints.OnPlayerWrongCheckpoint += RaceManager_OnPlayerWrongCheckpoint;
 
         Hide();
     }

@@ -66,40 +66,44 @@ public class CarLapCounter : MonoBehaviour
     IEnumerator nextLapText(int player)
     {
         UIGame UI = FindObjectOfType<UIGame>();
+        if (UI.Player1Text != null)
+        {
 
-        if (player == 1)
-        {
-            if (lapsCompleted == lapsToComplete - 1)
+            if (player == 1)
             {
-                UI.Player1Text.text = "Final Lap";
+                if (lapsCompleted == lapsToComplete - 1)
+                {
+                    UI.Player1Text.text = "Final Lap";
+                }
+                else
+                {
+                    UI.Player1Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                }
             }
-            else
+            else if (player == 2)
             {
-                UI.Player1Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                if (lapsCompleted == lapsToComplete - 1)
+                {
+                    UI.Player2Text.text = "Final Lap";
+                }
+                else
+                {
+                    UI.Player2Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                }
             }
-        }
-        else if (player == 2)
-        {
-            if (lapsCompleted == lapsToComplete - 1)
+
+            yield return new WaitForSeconds(2f);
+
+            if (player == 1)
             {
-                UI.Player2Text.text = "Final Lap";
+                UI.Player1Text.text = "";
             }
-            else
+            else if (player == 2)
             {
-                UI.Player2Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                UI.Player2Text.text = "";
             }
         }
 
-        yield return new WaitForSeconds(2f);
-
-        if (player == 1)
-        {
-            UI.Player1Text.text = "";
-        }
-        else if (player == 2)
-        {
-            UI.Player2Text.text = "";
-        }
     }
 
     public Transform GetCheckpointLocation()

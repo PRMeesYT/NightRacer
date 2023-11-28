@@ -63,7 +63,7 @@ public class Finish : MonoBehaviour
 
     public IEnumerator FinishLevel(int score)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         Transform UI = FindObjectOfType<UIGame>().transform;
         GameObject medalInstantiate = Instantiate(medal, UI);
         Image medalImage = medalInstantiate.GetComponent<Image>();

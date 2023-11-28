@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -11,14 +9,58 @@ public class ScoreManager : MonoBehaviour
 
     int score;
 
-    void Start()
+    private const string lapTimesKey = "SavedLapTimes";
+
+    public void SaveLapTime(float lapTime)
     {
-        
+        List<float> lapTimes = new List<float>();
+
+        // Check if lap times exist in PlayerPrefs
+        if (PlayerPrefs.HasKey(lapTimesKey))
+        {
+            string[] lapTimesString = PlayerPrefs.GetString(lapTimesKey).Split(';');
+
+            // Convert string values to floats and add to the list
+            foreach (string time in lapTimesString)
+            {
+                if (!string.IsNullOrEmpty(time))
+                {
+                    lapTimes.Add(float.Parse(time));
+                }
+            }
+        }
+
+        // Add the new lap time to the list
+        lapTimes.Add(lapTime);
+
+        // Convert the list of lap times to a delimited string
+        string lapTimesToSave = string.Join(";", lapTimes);
+
+        // Save the lap times to PlayerPrefs
+        PlayerPrefs.SetString(lapTimesKey, lapTimesToSave);
+        PlayerPrefs.Save();
     }
 
-    void Update()
+    public List<float> GetSavedLapTimes()
     {
-        
+        List<float> lapTimes = new List<float>();
+
+        // Check if lap times exist in PlayerPrefs
+        if (PlayerPrefs.HasKey(lapTimesKey))
+        {
+            string[] lapTimesString = PlayerPrefs.GetString(lapTimesKey).Split(';');
+
+            // Convert string values to floats and add to the list
+            foreach (string time in lapTimesString)
+            {
+                if (!string.IsNullOrEmpty(time))
+                {
+                    lapTimes.Add(float.Parse(time));
+                }
+            }
+        }
+
+        return lapTimes;
     }
 
     public void Level1(float time)
@@ -33,7 +75,7 @@ public class ScoreManager : MonoBehaviour
             Debug.Log("Silver " + time);
             score = 2;
         }
-        else if(time > silverTime && time <= bronzeTime)
+        else if (time > silverTime && time <= bronzeTime)
         {
             Debug.Log("Bronze " + time);
             score = 3;
@@ -42,6 +84,8 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
 
         Finish finish = FindObjectOfType<Finish>();
 
@@ -66,6 +110,8 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
     }
 
     public void Level3(float time)
@@ -86,6 +132,8 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
     }
 
     public void Level4(float time)
@@ -106,5 +154,7 @@ public class ScoreManager : MonoBehaviour
         {
             Debug.Log(time);
         }
+
+        SaveLapTime(time);
     }
 }

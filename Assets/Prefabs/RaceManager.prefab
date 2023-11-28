@@ -58,6 +58,7 @@ MonoBehaviour:
   checkPointArray: []
   startPos: {x: 0, y: 0, z: 0}
   Lap: 0
+  trafficSoundSFX: {fileID: 8300000, guid: cdaaf50ca05382642aa3d07ce7d1a21c, type: 3}
 --- !u!114 &1032749273308416358
 MonoBehaviour:
   m_ObjectHideFlags: 0

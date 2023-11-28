@@ -164,8 +164,8 @@ public class RaceManager : MonoBehaviour
 
     IEnumerator CountDown()
     {
-        float timer = 3f;
         UIText.text = "";
+        float timer = 3f;
         if (redTrafficLight != null)
             redTrafficLight.enabled = true;
 
@@ -190,8 +190,8 @@ public class RaceManager : MonoBehaviour
         flyingCarMovement.canMove = true;
         if (flyingCarMovementPlayer2 != null)
             flyingCarMovementPlayer2.canMove = true;
-        UI.startTimer = true;
-        yield return new WaitForSeconds(1f);
+        if (!multiplayer)
+            UI.startTimer = true;
     }
 
     public void ResetCar(FlyingCarMovement flyingCar)

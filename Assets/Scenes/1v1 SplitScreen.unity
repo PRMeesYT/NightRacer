@@ -298,6 +298,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 492084193033137459, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.7493854
+      objectReference: {fileID: 0}
+    - target: {fileID: 492084193033137459, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.875166
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285559713718509934, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.7493854
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285559713718509934, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 21.875166
+      objectReference: {fileID: 0}
     - target: {fileID: 3040709014654021985, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
       propertyPath: m_Name
       value: Splitscreen Camera

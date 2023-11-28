@@ -30,13 +30,16 @@ public class FlyingCarMovement : MonoBehaviour
     void Start()
     {
         UI = FindObjectOfType<UIGame>();
-        UI.GetComponents();
+        if (UI != null)
+        {
+            UI.GetComponents();
+        }
 
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = cm.transform.localPosition;
 
-        playerLayer = LayerMask.NameToLayer("Player");
-        obstacleLayer = LayerMask.NameToLayer("Obstacle");
+        //playerLayer = LayerMask.NameToLayer("Player");
+        //obstacleLayer = LayerMask.NameToLayer("Obstacle");
 
         canMove = false;
     }

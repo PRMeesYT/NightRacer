@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Animations;
 
 public class TrafficLight : MonoBehaviour
 {
@@ -29,7 +28,6 @@ public class TrafficLight : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(StartTrafficLights());
-            Debug.Log("Spatie komt door");
         }
 
         if (trafficLigts == TrafficLights.Off)
@@ -39,21 +37,21 @@ public class TrafficLight : MonoBehaviour
             redTrafficLight.enabled = false;
             OffTrafficLight.enabled = true;
         }
-        if (trafficLigts == TrafficLights.Green)
+        else if (trafficLigts == TrafficLights.Green)
         {
             greenTrafficLight.enabled = true;
             yellowTrafficLight.enabled = false;
             redTrafficLight.enabled = false;
             OffTrafficLight.enabled = false;
         }
-        if (trafficLigts == TrafficLights.Yellow)
+        else if (trafficLigts == TrafficLights.Yellow)
         {
             greenTrafficLight.enabled = false;
             yellowTrafficLight.enabled = true;
             redTrafficLight.enabled = false;
             OffTrafficLight.enabled = false;
         }
-        if (trafficLigts == TrafficLights.Red)
+        else if (trafficLigts == TrafficLights.Red)
         {
             greenTrafficLight.enabled = false;
             yellowTrafficLight.enabled = false;

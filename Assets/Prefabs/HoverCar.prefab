@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4118781498130576099}
   - component: {fileID: 8015621010609386199}
   - component: {fileID: -6039195509278024257}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: HoverCar
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -202,6 +202,9 @@ MonoBehaviour:
   canMove: 1
   player: 0
   rb: {fileID: 0}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &-6039195509278024257
 MonoBehaviour:
   m_ObjectHideFlags: 0

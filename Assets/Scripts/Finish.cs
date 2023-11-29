@@ -17,9 +17,11 @@ public class Finish : MonoBehaviour
     public Sprite bronzeMedal;
     public Sprite none;
 
+    private GameManager gameManager;
+
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -31,6 +33,7 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            gameManager.FinishSound();
             UIGame UI = FindObjectOfType<UIGame>();
             UI.Finish();
 
@@ -60,7 +63,7 @@ public class Finish : MonoBehaviour
 
     public IEnumerator FinishLevel(int score)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         Transform UI = FindObjectOfType<UIGame>().transform;
         GameObject medalInstantiate = Instantiate(medal, UI);
         Image medalImage = medalInstantiate.GetComponent<Image>();

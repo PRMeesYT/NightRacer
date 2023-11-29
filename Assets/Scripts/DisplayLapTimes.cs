@@ -5,16 +5,20 @@ using System.Collections.Generic;
 public class DisplayLapTimes : MonoBehaviour
 {
     public ScoreManager lapTimeManager;
-    public TMP_Text lapTimesText;
+    public TextMeshProUGUI lapTimesText;
 
     void Start()
     {
+        lapTimeManager = FindObjectOfType<ScoreManager>();
+
         // Ensure that the LapTimeManager reference is set in the Inspector
         if (lapTimeManager == null)
         {
             Debug.LogError("LapTimeManager reference not set!");
             return;
         }
+
+        lapTimesText = GetComponent<TextMeshProUGUI>();
 
         // Ensure that the TMP Text reference is set in the Inspector
         if (lapTimesText == null)

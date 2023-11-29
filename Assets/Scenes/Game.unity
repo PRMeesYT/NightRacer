@@ -681,14 +681,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5496603567699374515, guid: 95e50a0f4dc368449b39f94d1fefdb8d, type: 3}
-      propertyPath: Player1Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496603567699374515, guid: 95e50a0f4dc368449b39f94d1fefdb8d, type: 3}
-      propertyPath: Player2Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496603567699374515, guid: 95e50a0f4dc368449b39f94d1fefdb8d, type: 3}
       propertyPath: checkPoints
       value: 
       objectReference: {fileID: 1351993637}

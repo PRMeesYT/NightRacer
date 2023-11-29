@@ -25,6 +25,8 @@ public class FlyingCarMovement : MonoBehaviour
 
     public Rigidbody rb;
 
+    [SerializeField] private LayerMask ground;
+
     UIGame UI;
 
     void Start()
@@ -61,7 +63,7 @@ public class FlyingCarMovement : MonoBehaviour
         foreach (GameObject spring in springs)
         {
             RaycastHit hit;
-            if (Physics.Raycast(spring.transform.position, transform.TransformDirection(Vector3.down), out hit, 3f))
+            if (Physics.Raycast(spring.transform.position, transform.TransformDirection(Vector3.down), out hit, 3f, ground))
             {
                 rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.up) * Mathf.Pow(3f - hit.distance, 2) / 3f * 250f, spring.transform.position);
             }

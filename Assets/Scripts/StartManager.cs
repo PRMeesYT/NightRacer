@@ -70,27 +70,27 @@ public class StartManager : MonoBehaviour
 
     public void LoadMap1()
     {
-        SceneManager.LoadScene("Map1");
+        SceneManager.LoadScene("Track1");
     }
 
     public void LoadMap2()
     {
-        SceneManager.LoadScene("SoloMap2");
+        SceneManager.LoadScene("Track2");
     }
 
     public void LoadMap3()
     {
-        SceneManager.LoadScene("SoloMap3");
+        SceneManager.LoadScene("Track3");
     }
 
     public void LoadMap4()
     {
-        SceneManager.LoadScene("SoloMap4");
+        SceneManager.LoadScene("Track4");
     }
 
     public void VersusMode()
     {
-        SceneManager.LoadScene("VersusScene");
+        SceneManager.LoadScene("Map1");
     }
 
     public void QuitGame()

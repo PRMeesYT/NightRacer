@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject lapTimes;
+
+    private AudioManager audioManager;
 
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
@@ -13,15 +17,18 @@ public class GameManager : MonoBehaviour
     public AudioClip winSoundSFX;
     public AudioClip medalSound;
     public AudioClip carSFX;
+    public AudioClip carRepeatSFX;
     public AudioClip music1;
-    public AudioClip music2;
 
     private bool pauseOpen = false;
     private bool settingsOpen = false;
+    private bool lapTimesOpen = false;
+    private bool isPlaying = false;
 
     private void Start()
     {
-        AudioManager.Instance.PlaySFX(rainSFX, 1);
+        audioManager = FindAnyObjectByType<AudioManager>();
+        AudioManager.Instance.PlaySFX(rainSFX, 0.5f);
     }
 
     private void Update()
@@ -31,16 +38,52 @@ public class GameManager : MonoBehaviour
             PauseMenu();
             ClickSound();
         }
+
+        if (Input.GetKeyDown(KeyCode.W) && !isPlaying)
+        {
+            if (audioManager.carSfxSource != null && isPlaying)
+            {
+                audioManager.carSfxSource.Stop();
+            }
+
+            AudioManager.Instance.PlayCarSFX(carSFX, 1);
+            isPlaying = true;
+            StartCoroutine(RepeatSound());
+        }
+
+        if (Input.GetKeyUp(KeyCode.W) && isPlaying)
+        {
+            audioManager.StopCarSFX(carSFX);
+            isPlaying = false;
+        }
+    }
+
+    IEnumerator RepeatSound()
+    {
+        yield return new WaitForSeconds(carRepeatSFX.length);
+
+        if (Input.GetKey(KeyCode.W) && isPlaying)
+        {
+            if (audioManager.carSfxSource != null && isPlaying)
+            {
+                audioManager.carSfxSource.Stop();
+            }
+
+            AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+        }
+
+        yield return new WaitForSeconds (carRepeatSFX.length);
+
+        if (Input.GetKey(KeyCode.W) && isPlaying)
+        {
+            AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+            StartCoroutine(RepeatSound());
+        }
     }
 
     public void HoverSound()
     {
         AudioManager.Instance.PlaySFX(buttonHoverSFX, 1);
-    }
-
-    public void CarSound()
-    {
-        AudioManager.Instance.PlaySFX(carSFX, 1);
     }
 
     public void ClickSound()
@@ -77,11 +120,13 @@ public class GameManager : MonoBehaviour
     {
         if (pauseOpen)
         {
+            Time.timeScale = 1;
             pauseMenu.SetActive(false);
             pauseOpen = false;
         }
         else if (!pauseOpen)
         {
+            Time.timeScale = 0;
             pauseMenu.SetActive(true);
             pauseOpen = true;
         }
@@ -100,6 +145,24 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(false);
             settingsMenu.SetActive(true);
             settingsOpen = true;
+        }
+    }
+
+        public void LapTImes()
+    {
+        if (lapTimesOpen)
+        {
+            lapTimes.SetActive(false);
+            lapTimesOpen = false;
+            pauseMenu.SetActive(true);
+            pauseOpen = true;
+        }
+        else if (!lapTimesOpen)
+        {
+            lapTimes.SetActive(true);
+            lapTimesOpen = true;
+            pauseMenu.SetActive(false);
+            pauseOpen = false;
         }
     }
 

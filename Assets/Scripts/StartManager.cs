@@ -10,14 +10,13 @@ public class StartManager : MonoBehaviour
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
     public AudioClip music1;
-    public AudioClip music2;
 
     private bool settingsOpen;
     private bool soloOpen;
 
     void Start()
     {
-        AudioManager.Instance.PlayMusicWithCrossFade(music1, 3.0f);
+        AudioManager.Instance.PlayMusic(music1);
         settingsMenu.SetActive(false);
         mainButtons.SetActive(true);
         soloMenu.SetActive(false);

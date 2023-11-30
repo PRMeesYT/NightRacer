@@ -7,6 +7,7 @@ public class StartManager : MonoBehaviour
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject soloMenu;
 
+
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
     public AudioClip music1;
@@ -55,6 +56,7 @@ public class StartManager : MonoBehaviour
             soloOpen = true;
         }
     }
+
 
     public void HoverSound()
     {

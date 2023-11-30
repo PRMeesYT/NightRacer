@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject lapTimes;
+    [SerializeField] private GameObject muteAudio;
+    [SerializeField] private GameObject unMuteAudio;
 
     private AudioManager audioManager;
 
@@ -24,6 +26,8 @@ public class GameManager : MonoBehaviour
     private bool settingsOpen = false;
     private bool lapTimesOpen = false;
     private bool isPlaying = false;
+    private bool audioMuted = false;
+
 
     private void Start()
     {
@@ -78,6 +82,23 @@ public class GameManager : MonoBehaviour
         {
             AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
             StartCoroutine(RepeatSound());
+        }
+    }
+
+    public void AudioEffects()
+    {
+        if (audioMuted)
+        {
+            muteAudio.SetActive(true);
+            unMuteAudio.SetActive(false);
+            audioMuted = false;
+
+        }
+        if (!audioMuted)
+        {
+            muteAudio.SetActive(false);
+            unMuteAudio.SetActive(true);
+            audioMuted = true;
         }
     }
 

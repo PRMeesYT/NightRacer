@@ -15,12 +15,10 @@ public class ScoreManager : MonoBehaviour
     {
         List<float> lapTimes = new List<float>();
 
-        // Check if lap times exist in PlayerPrefs
         if (PlayerPrefs.HasKey(lapTimesKey))
         {
             string[] lapTimesString = PlayerPrefs.GetString(lapTimesKey).Split(';');
 
-            // Convert string values to floats and add to the list
             foreach (string time in lapTimesString)
             {
                 if (!string.IsNullOrEmpty(time))
@@ -30,13 +28,9 @@ public class ScoreManager : MonoBehaviour
             }
         }
 
-        // Add the new lap time to the list
         lapTimes.Add(lapTime);
-
-        // Convert the list of lap times to a delimited string
         string lapTimesToSave = string.Join(";", lapTimes);
 
-        // Save the lap times to PlayerPrefs
         PlayerPrefs.SetString(lapTimesKey, lapTimesToSave);
         PlayerPrefs.Save();
     }
@@ -45,12 +39,10 @@ public class ScoreManager : MonoBehaviour
     {
         List<float> lapTimes = new List<float>();
 
-        // Check if lap times exist in PlayerPrefs
         if (PlayerPrefs.HasKey(lapTimesKey))
         {
             string[] lapTimesString = PlayerPrefs.GetString(lapTimesKey).Split(';');
 
-            // Convert string values to floats and add to the list
             foreach (string time in lapTimesString)
             {
                 if (!string.IsNullOrEmpty(time))
@@ -63,7 +55,7 @@ public class ScoreManager : MonoBehaviour
         return lapTimes;
     }
 
-    public void Level1(float time)
+        public void Level1(float time)
     {
         if (time <= goldTime)
         {
@@ -75,7 +67,7 @@ public class ScoreManager : MonoBehaviour
             Debug.Log("Silver " + time);
             score = 2;
         }
-        else if (time > silverTime && time <= bronzeTime)
+        else if(time > silverTime && time <= bronzeTime)
         {
             Debug.Log("Bronze " + time);
             score = 3;

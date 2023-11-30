@@ -48,11 +48,6 @@ public class FlyingCarMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            gameManager.CarSound();
-        }
-
         if (canMove && player == 1)
         {
             vertical = Input.GetAxis("Vertical");

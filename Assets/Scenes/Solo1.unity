@@ -2408,6 +2408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633e98c4f44656b4386a87fccc6df9d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  greenTrafficLight: {fileID: 0}
+  yellowTrafficLight: {fileID: 0}
+  redTrafficLight: {fileID: 0}
+  OffTrafficLight: {fileID: 0}
   trafficSoundSFX: {fileID: 8300000, guid: cdaaf50ca05382642aa3d07ce7d1a21c, type: 3}
 --- !u!1 &1212472499
 GameObject:

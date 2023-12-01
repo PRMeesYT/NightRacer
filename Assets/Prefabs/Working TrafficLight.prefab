@@ -1420,6 +1420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7038539174650475308}
+  - component: {fileID: 4806141312419138720}
   m_Layer: 0
   m_Name: Working TrafficLight
   m_TagString: Untagged
@@ -1446,6 +1447,23 @@ Transform:
   - {fileID: 2292901051126252319}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4806141312419138720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7654650260758275274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633e98c4f44656b4386a87fccc6df9d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  greenTrafficLight: {fileID: 4773042666523048031}
+  yellowTrafficLight: {fileID: 4624129392637899958}
+  redTrafficLight: {fileID: 4708334990040179298}
+  OffTrafficLight: {fileID: 7100289197005651069}
+  trafficSoundSFX: {fileID: 0}
 --- !u!1 &7946100167739705786
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,15 +8,17 @@ public class TrafficLight : MonoBehaviour
     private TrafficLights trafficLigts;
 
     FlyingCarMovement flyingCarMovement;
-    SkinnedMeshRenderer greenTrafficLight;
-    SkinnedMeshRenderer yellowTrafficLight;
-    SkinnedMeshRenderer redTrafficLight;
-    SkinnedMeshRenderer OffTrafficLight;
+    [SerializeField] SkinnedMeshRenderer greenTrafficLight;
+    [SerializeField] SkinnedMeshRenderer yellowTrafficLight;
+    [SerializeField] SkinnedMeshRenderer redTrafficLight;
+    [SerializeField] SkinnedMeshRenderer OffTrafficLight;
 
     [SerializeField] private AudioClip trafficSoundSFX;
 
     private void Start()
     {
+        flyingCarMovement = FindObjectOfType<FlyingCarMovement>();
+        flyingCarMovement.canMove = false;
         greenTrafficLight.enabled = false;
         yellowTrafficLight.enabled = false;
         redTrafficLight.enabled = false;
@@ -68,14 +70,12 @@ public class TrafficLight : MonoBehaviour
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Yellow;
         yield return new WaitForSeconds(1f);
+        StartGame();
         trafficLigts = TrafficLights.Green;
     }
 
     private void StartGame()
     {
         flyingCarMovement.canMove = true;
-        //if (flyingCarMovement.Pl != null)
-        //    flyingCarMovementPlayer2.canMove = true;
-        //UI.startTimer = true;
     }
 }

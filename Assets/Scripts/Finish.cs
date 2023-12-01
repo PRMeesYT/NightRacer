@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics.Tracing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
@@ -18,15 +19,11 @@ public class Finish : MonoBehaviour
     public Sprite none;
 
     private GameManager gameManager;
+    private MoveToNextLevel nextLevel;
 
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,6 +50,21 @@ public class Finish : MonoBehaviour
             FlyingCarMovement flyingCarMovement = other.GetComponent<FlyingCarMovement>();
             flyingCarMovement.canMove = false;
 
+            if (SceneManager.GetActiveScene().buildIndex == nextLevel.eindLevel)
+            {
+                Debug.Log("You Completed ALL Levels");
+
+                //Win scherm / alle levels gehaald
+            }
+            else
+            {
+                SceneManager.LoadScene(nextLevel.nextSceneLoad);
+
+                if (nextLevel.nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+                {
+                    PlayerPrefs.SetInt("levelAt", nextLevel.nextSceneLoad);
+                }
+            }
         }
     }
 

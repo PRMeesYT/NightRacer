@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MoveToNextLevel : MonoBehaviour
 {
     public int nextSceneLoad;
-    private int eindLevel = 7;
+    public int eindLevel = 6;
 
     void Start()
     {

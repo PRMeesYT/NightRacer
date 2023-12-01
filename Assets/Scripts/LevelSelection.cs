@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class LevelSelection : MonoBehaviour
 {
     public Button[] lvlButtons;
+    public int selectedLevel;
 
     void Start()
     {

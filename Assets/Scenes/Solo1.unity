@@ -815,6 +815,16 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 679879134}
   m_SourcePrefab: {fileID: 100100000, guid: 300301fe42ba585489c348637f72d81b, type: 3}
+--- !u!1 &226332411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9207893664027596908, guid: 300301fe42ba585489c348637f72d81b, type: 3}
+  m_PrefabInstance: {fileID: 226332410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &226332412 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5723838772821135959, guid: 300301fe42ba585489c348637f72d81b, type: 3}
+  m_PrefabInstance: {fileID: 226332410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &269976803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2125,7 +2135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 0}
   playerSpawned: 0
-  cam: 0
 --- !u!1 &1047438574
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,6 +2381,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 1369287694}
   settingsMenu: {fileID: 777905625}
   lapTimes: {fileID: 1394525189}
+  muteAudio: {fileID: 226332412}
+  unMuteAudio: {fileID: 226332411}
   buttonClickSFX: {fileID: 8300000, guid: 3d4c6d23a35de52469b71e46614ad519, type: 3}
   buttonHoverSFX: {fileID: 8300000, guid: aba02407984296947843358beb2734e6, type: 3}
   powerUpPickupSFX: {fileID: 8300000, guid: dcf9c45b5ad905e49b0f448dcf5dca42, type: 3}

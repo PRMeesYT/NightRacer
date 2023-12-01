@@ -52,9 +52,9 @@ public class Finish : MonoBehaviour
 
             if (SceneManager.GetActiveScene().buildIndex == nextLevel.eindLevel)
             {
-                Debug.Log("You Completed ALL Levels");
+                Debug.Log("You Completed all Levels");
 
-                //Win scherm / alle levels gehaald
+                SceneManager.LoadScene("StartScene");
             }
             else
             {

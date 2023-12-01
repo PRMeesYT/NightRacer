@@ -297,6 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e72c66f8784773340ab8d84876f87b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!20 &28164909
 Camera:
   m_ObjectHideFlags: 0
@@ -4470,14 +4471,6 @@ PrefabInstance:
       propertyPath: finish
       value: 
       objectReference: {fileID: 314353821}
-    - target: {fileID: 93819904340389412, guid: 0ce47075258eb77478671bca9e11340c, type: 3}
-      propertyPath: multiplayer
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 93819904340389412, guid: 0ce47075258eb77478671bca9e11340c, type: 3}
-      propertyPath: startLocation.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 93819904340389412, guid: 0ce47075258eb77478671bca9e11340c, type: 3}
       propertyPath: startLocation.Array.data[0]
       value: 

@@ -926,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4603691543061169708}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.21331769, z: -0, w: 0.9769829}
+  m_LocalRotation: {x: 0, y: -0.21332033, z: 0, w: 0.97698236}
   m_LocalPosition: {x: -24.69, y: 4.18, z: -1.19}
   m_LocalScale: {x: 1.1171292, y: 1.1171292, z: 1.1171292}
   m_ConstrainProportionsScale: 0
@@ -949,11 +949,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4f7e8ee0fad834b907fdcba9bd333b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  greenTrafficLight: {fileID: 0}
-  yellowTrafficLight: {fileID: 0}
-  redTrafficLight: {fileID: 0}
-  OffTrafficLight: {fileID: 0}
-  trafficSoundSFX: {fileID: 0}
+  greenTrafficLight: {fileID: 3966982943224254575}
+  yellowTrafficLight: {fileID: 8536428024275067928}
+  redTrafficLight: {fileID: 7915123455377073062}
+  OffTrafficLight: {fileID: 3043272364420249015}
+  trafficSoundSFX: {fileID: 8300000, guid: cdaaf50ca05382642aa3d07ce7d1a21c, type: 3}
 --- !u!1 &4752756423581510886
 GameObject:
   m_ObjectHideFlags: 0

@@ -3172,7 +3172,7 @@ PrefabInstance:
     - target: {fileID: 4741095783310892450, guid: d8fc83927db10b347aaad9400c04903e, type: 3}
       propertyPath: m_text
       value: "Game art made by\nTijmen Melssen \nBrendan Stakenburg\nBastiaan Boeve\nMischa
-        Wille\n\nDevelopment made by \nMees Hogendoorn \nCapser Ketelaars "
+        Wille\n\nDevelopers:\nMees Hogendoorn \nCapser Ketelaars "
       objectReference: {fileID: 0}
     - target: {fileID: 4741095783310892450, guid: d8fc83927db10b347aaad9400c04903e, type: 3}
       propertyPath: m_fontSize

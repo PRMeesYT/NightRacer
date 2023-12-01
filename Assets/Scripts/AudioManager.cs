@@ -40,7 +40,7 @@ public class AudioManager : MonoBehaviour
         carSfxSource = gameObject.AddComponent<AudioSource>();
 
         musicSource.loop = true;
-        carSfxSource.loop = true;
+        //carSfxSource.loop = true;
     }
 
     public void PlayMusic(AudioClip musicClip)
@@ -59,7 +59,7 @@ public class AudioManager : MonoBehaviour
         carSfxSource.PlayOneShot(clip);
     }
 
-    public void StopCarSFX(AudioClip clip)
+    public void StopCarSFX()
     {
         carSfxSource.Stop();
     }

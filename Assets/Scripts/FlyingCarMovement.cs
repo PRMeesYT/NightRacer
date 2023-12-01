@@ -7,8 +7,8 @@ public class FlyingCarMovement : MonoBehaviour
     public float power;
     public float maxAngle;
 
-    private float horizontal;
-    private float vertical;
+    public float horizontal;
+    public float vertical;
 
     public List<GameObject> springs;
 
@@ -26,6 +26,8 @@ public class FlyingCarMovement : MonoBehaviour
     public Rigidbody rb;
 
     [SerializeField] private LayerMask ground;
+
+
 
     UIGame UI;
 

@@ -18,7 +18,8 @@ public class RaceManager : MonoBehaviour
 
     public Transform[] startLocation;
 
-    public GameObject hoverCar;
+    public GameObject[] hoverCar;
+    int carSelected;
 
     [SerializeField] private List<Transform> carTransfromList;
 
@@ -31,8 +32,8 @@ public class RaceManager : MonoBehaviour
 
     public bool multiplayer;
 
-    [SerializeField] private FlyingCarMovement flyingCarMovement;
-    [SerializeField] private FlyingCarMovement flyingCarMovementPlayer2;
+    public FlyingCarMovement flyingCarMovement;
+    public FlyingCarMovement flyingCarMovementPlayer2;
 
     [Space(10)]
 
@@ -49,14 +50,12 @@ public class RaceManager : MonoBehaviour
 
     private TrafficLights trafficLigts;
 
-    SkinnedMeshRenderer greenTrafficLight;
-    SkinnedMeshRenderer yellowTrafficLight;
-    SkinnedMeshRenderer redTrafficLight;
-    SkinnedMeshRenderer OffTrafficLight;
 
     [SerializeField] private AudioClip trafficSoundSFX;
 
-    UIGame UI;
+    public UIGame UI;
+
+    CarShowCaseManager carShowCaseManager;
     CameraController camController;
     CameraController camController2;
 
@@ -64,7 +63,7 @@ public class RaceManager : MonoBehaviour
     {
         carTransfromList = new List<Transform>();
 
-        GameObject car1 = Instantiate(hoverCar, startLocation[0]);
+        GameObject car1 = Instantiate(hoverCar[carSelected], startLocation[0]);
 
         flyingCarMovement = car1.GetComponent<FlyingCarMovement>();
 
@@ -77,7 +76,7 @@ public class RaceManager : MonoBehaviour
 
         if (multiplayer)
         {
-            GameObject car2 = Instantiate(hoverCar, startLocation[1]);
+            GameObject car2 = Instantiate(hoverCar[carSelected], startLocation[1]);
 
             car2.tag = "Player2";
 
@@ -121,8 +120,8 @@ public class RaceManager : MonoBehaviour
             currentLap = 0;
         }
 
+
         UI = FindObjectOfType<UIGame>();
-        StartCoroutine(CountDown());
     }
 
     #region
@@ -162,38 +161,6 @@ public class RaceManager : MonoBehaviour
     }
     #endregion
 
-    IEnumerator CountDown()
-    {
-        UIText.text = "";
-        float timer = 3f;
-        if (redTrafficLight != null)
-            redTrafficLight.enabled = true;
-
-        yield return new WaitForSeconds(1f);
-        timer--;
-
-        if (yellowTrafficLight != null)
-        {
-            yellowTrafficLight.enabled = true;
-            redTrafficLight.enabled = false;
-        }
-
-        yield return new WaitForSeconds(1f);
-        timer--;
-
-        if (greenTrafficLight != null)
-        {
-            greenTrafficLight.enabled = true;
-            yellowTrafficLight.enabled = false;
-        }
-
-        flyingCarMovement.canMove = true;
-        if (flyingCarMovementPlayer2 != null)
-            flyingCarMovementPlayer2.canMove = true;
-        if (!multiplayer)
-            UI.startTimer = true;
-    }
-
     public void ResetCar(FlyingCarMovement flyingCar)
     {
         StartCoroutine(OutofBounce(flyingCar));
@@ -216,16 +183,13 @@ public class RaceManager : MonoBehaviour
 
     void Start()
     {
-        if (greenTrafficLight != null)
-        {
-            greenTrafficLight.enabled = false;
-            yellowTrafficLight.enabled = false;
-            redTrafficLight.enabled = false;
-        }
+
     }
 
     void Update()
     {
+        Debug.Log(carSelected);
+
         if (multiplayer)
         {
             Lap = currentLap;
@@ -235,5 +199,10 @@ public class RaceManager : MonoBehaviour
         {
             return;
         }
+    }
+
+    public void SetCarSelected(int number)
+    {
+        carSelected = number;
     }
 }

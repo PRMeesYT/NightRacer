@@ -21,7 +21,15 @@ public class CarShowCaseManager : MonoBehaviour
     bool canPlay;
     bool canSelect;
 
+    public bool start;
+
     [SerializeField] private TextMeshProUGUI pointsText;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+
+    }
 
     void Start()
     {
@@ -43,13 +51,19 @@ public class CarShowCaseManager : MonoBehaviour
 
     void Update()
     {
-
+        if (start)
+        {
+            RaceManager raceManager = FindObjectOfType<RaceManager>();
+            raceManager.SetCarSelected(carSelected);
+            Destroy(gameObject, 5f);
+        }
     }
 
     public void Play()
     {
         if (canPlay)
         {
+            start = true;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
@@ -64,6 +78,9 @@ public class CarShowCaseManager : MonoBehaviour
                 model.SetActive(false);
             }
             carModels[0].SetActive(true);
+            carSelected = 1;
+            canPlay = false;
+            play.color = Color.gray;
         }
     }
 
@@ -77,6 +94,9 @@ public class CarShowCaseManager : MonoBehaviour
                 model.SetActive(false);
             }
             carModels[1].SetActive(true);
+            carSelected = 2;
+            canPlay = false;
+            play.color = Color.gray;
         }
         else if (points > 0)
         {
@@ -102,6 +122,7 @@ public class CarShowCaseManager : MonoBehaviour
                 model.SetActive(false);
             }
             carModels[2].SetActive(true);
+            carSelected = 3;
         }
         else if (points > 0)
         {
@@ -127,6 +148,7 @@ public class CarShowCaseManager : MonoBehaviour
                 model.SetActive(false);
             }
             carModels[3].SetActive(true);
+            carSelected = 4;
         }
         else if (points > 0)
         {

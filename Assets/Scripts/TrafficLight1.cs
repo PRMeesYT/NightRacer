@@ -73,7 +73,8 @@ public class TrafficLight : MonoBehaviour
 
     IEnumerator StartTrafficLights()
     {
-        yield return new WaitForSeconds(1f);
+        raceManager.PlayStart();
+        yield return new WaitForSeconds(.7f);
         trafficLigts = TrafficLights.Red;
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Yellow;

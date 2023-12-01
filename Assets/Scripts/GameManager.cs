@@ -19,9 +19,15 @@ public class GameManager : MonoBehaviour
     public AudioClip winSoundSFX;
     public AudioClip medalSound;
     public AudioClip carAcellSFX;
-    public AudioClip carRepeatSFX;
+    public AudioSource carRepeatSFX;
     public AudioClip carDecellSFX;
     public AudioClip music1;
+
+    public float maxSpeed = 100f;
+    public float acceleration = 5f;
+    public float deceleration = 10f;
+
+    private float currentSpeed = 0f;
 
     private bool pauseOpen = false;
     private bool settingsOpen = false;
@@ -57,63 +63,91 @@ public class GameManager : MonoBehaviour
             ClickSound();
         }
 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && !isPlaying)
-        {
-            if (audioManager.carSfxSource != null)
-            {
-                audioManager.carSfxSource.Stop();
-            }
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && !isPlaying)
+        //{
+        //    if (audioManager.carSfxSource != null)
+        //    {
+        //        audioManager.carSfxSource.Stop();
+        //    }
 
-            audioManager.StopCarSFX();
-            AudioManager.Instance.PlayCarSFX(carAcellSFX, 1);
-            StartCoroutine(RepeatSound());
+        //    audioManager.StopCarSFX();
+        //    AudioManager.Instance.PlayCarSFX(carAcellSFX, 1);
+        //    StartCoroutine(RepeatSound());
+        //}
+
+        //if (!Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S) && canDecell)
+        //{
+        //    canDecell = false;
+        //    decell = true;
+        //    audioManager.StopCarSFX();
+        //    AudioManager.Instance.PlayCarSFX(carDecellSFX, 1);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && decell)
+        //{
+        //    decell = false;
+        //    audioManager.StopCarSFX();
+        //}
+
+        // Get input for acceleration and deceleration (you can modify this based on your input system)
+        float accelerationInput = Input.GetAxis("Vertical");
+
+        // Update car speed based on acceleration and deceleration
+        if (accelerationInput > 0)
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, maxSpeed, acceleration * Time.deltaTime);
+        }
+        else
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0f, deceleration * Time.deltaTime);
         }
 
-        if (!Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S) && canDecell)
-        {
-            canDecell = false;
-            decell = true;
-            audioManager.StopCarSFX();
-            AudioManager.Instance.PlayCarSFX(carDecellSFX, 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && decell)
-        {
-            decell = false;
-            audioManager.StopCarSFX();
-        }
+        // Play engine sound based on current speed
+        UpdateEngineSound();
     }
 
-    IEnumerator RepeatSound()
+
+
+    private void UpdateEngineSound()
     {
-        if (decell)
-        {
-            Debug.Log("test");
-            if (isPlaying)
-            {
-                yield return new WaitForSeconds(carDecellSFX.length);
+        // Adjust pitch and volume of the engine sound based on the current speed
+        float normalizedSpeed = currentSpeed / maxSpeed;
+        carRepeatSFX.pitch = Mathf.Lerp(0.5f, 1.5f, normalizedSpeed);
+        carRepeatSFX.volume = Mathf.Lerp(0.2f, 1.5f, normalizedSpeed);
 
-                audioManager.StopCarSFX();
-            }
-            else
-            {
-                yield return new WaitForSeconds(carRepeatSFX.length);
-            }
-
-            isPlaying = false;
-            canDecell = true;
-
-            AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
-
-            yield return new WaitForSeconds(carRepeatSFX.length);
-
-            if (isPlaying == false)
-            {
-                AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
-                StartCoroutine(RepeatSound());
-            }
-        }
-        yield return null;
+        // You may want to add additional logic for handling other audio effects based on speed
     }
+
+    //IEnumerator RepeatSound()
+    //{
+    //    if (decell)
+    //    {
+    //        Debug.Log("test");
+    //        if (isPlaying)
+    //        {
+    //            yield return new WaitForSeconds(carDecellSFX.length);
+
+    //            audioManager.StopCarSFX();
+    //        }
+    //        else
+    //        {
+    //            yield return new WaitForSeconds(carRepeatSFX.length);
+    //        }
+
+    //        isPlaying = false;
+    //        canDecell = true;
+
+    //        AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+
+    //        yield return new WaitForSeconds(carRepeatSFX.length);
+
+    //        if (isPlaying == false)
+    //        {
+    //            AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+    //            StartCoroutine(RepeatSound());
+    //        }
+    //    }
+    //    yield return null;
+    //}
 
     public void AudioEffects()
     {

@@ -18,8 +18,9 @@ public class GameManager : MonoBehaviour
     public AudioClip rainSFX;
     public AudioClip winSoundSFX;
     public AudioClip medalSound;
-    public AudioClip carSFX;
+    public AudioClip carAcellSFX;
     public AudioClip carRepeatSFX;
+    public AudioClip carDecellSFX;
     public AudioClip music1;
 
     private bool pauseOpen = false;
@@ -27,12 +28,25 @@ public class GameManager : MonoBehaviour
     private bool lapTimesOpen = false;
     private bool isPlaying = false;
     private bool audioMuted = false;
+    private bool gameStart = false;
+    private bool decell = false;
+    private bool canDecell = false;
 
+    private float velocity;
+
+    FlyingCarMovement[] cars;
 
     private void Start()
     {
         audioManager = FindAnyObjectByType<AudioManager>();
         AudioManager.Instance.PlaySFX(rainSFX, 0.5f);
+
+        cars = FindObjectsOfType<FlyingCarMovement>();
+
+        foreach (FlyingCarMovement car in cars)
+        {
+            velocity = car.vertical;
+        }
     }
 
     private void Update()
@@ -43,46 +57,62 @@ public class GameManager : MonoBehaviour
             ClickSound();
         }
 
-        if (Input.GetKeyDown(KeyCode.W) && !isPlaying)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && !isPlaying)
         {
-            if (audioManager.carSfxSource != null && isPlaying)
+            if (audioManager.carSfxSource != null)
             {
                 audioManager.carSfxSource.Stop();
             }
 
-            AudioManager.Instance.PlayCarSFX(carSFX, 1);
-            isPlaying = true;
+            audioManager.StopCarSFX();
+            AudioManager.Instance.PlayCarSFX(carAcellSFX, 1);
             StartCoroutine(RepeatSound());
         }
 
-        if (Input.GetKeyUp(KeyCode.W) && isPlaying)
+        if (!Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S) && canDecell)
         {
-            audioManager.StopCarSFX(carSFX);
-            isPlaying = false;
+            canDecell = false;
+            decell = true;
+            audioManager.StopCarSFX();
+            AudioManager.Instance.PlayCarSFX(carDecellSFX, 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && decell)
+        {
+            decell = false;
+            audioManager.StopCarSFX();
         }
     }
 
     IEnumerator RepeatSound()
     {
-        yield return new WaitForSeconds(carRepeatSFX.length);
-
-        if (Input.GetKey(KeyCode.W) && isPlaying)
+        if (decell)
         {
-            if (audioManager.carSfxSource != null && isPlaying)
+            Debug.Log("test");
+            if (isPlaying)
             {
-                audioManager.carSfxSource.Stop();
+                yield return new WaitForSeconds(carDecellSFX.length);
+
+                audioManager.StopCarSFX();
+            }
+            else
+            {
+                yield return new WaitForSeconds(carRepeatSFX.length);
             }
 
-            AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
-        }
+            isPlaying = false;
+            canDecell = true;
 
-        yield return new WaitForSeconds (carRepeatSFX.length);
-
-        if (Input.GetKey(KeyCode.W) && isPlaying)
-        {
             AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
-            StartCoroutine(RepeatSound());
+
+            yield return new WaitForSeconds(carRepeatSFX.length);
+
+            if (isPlaying == false)
+            {
+                AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+                StartCoroutine(RepeatSound());
+            }
         }
+        yield return null;
     }
 
     public void AudioEffects()
@@ -169,7 +199,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-        public void LapTImes()
+    public void LapTImes()
     {
         if (lapTimesOpen)
         {

@@ -48,17 +48,19 @@ MonoBehaviour:
   UIText: {fileID: 0}
   startLocation:
   - {fileID: 0}
-  - {fileID: 0}
-  hoverCar: {fileID: 689851832646077403, guid: acc147e38fabac64898754021901e445, type: 3}
+  hoverCar:
+  - {fileID: 689851832646077403, guid: acc147e38fabac64898754021901e445, type: 3}
+  - {fileID: 4255394126646446731, guid: f60b3d97ec6400d4bb223c5af1c61fd7, type: 3}
   carTransfromList: []
   finish: {fileID: 0}
-  multiplayer: 1
+  multiplayer: 0
   flyingCarMovement: {fileID: 0}
   flyingCarMovementPlayer2: {fileID: 0}
   checkPointArray: []
   startPos: {x: 0, y: 0, z: 0}
   Lap: 0
   trafficSoundSFX: {fileID: 8300000, guid: cdaaf50ca05382642aa3d07ce7d1a21c, type: 3}
+  UI: {fileID: 0}
 --- !u!114 &1032749273308416358
 MonoBehaviour:
   m_ObjectHideFlags: 0

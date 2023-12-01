@@ -1,5 +1,5 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class TrafficLight : MonoBehaviour
 {
@@ -9,7 +9,6 @@ public class TrafficLight : MonoBehaviour
 
     private bool gameStarted = false;
 
-    FlyingCarMovement flyingCarMovement;
     [SerializeField] SkinnedMeshRenderer greenTrafficLight;
     [SerializeField] SkinnedMeshRenderer yellowTrafficLight;
     [SerializeField] SkinnedMeshRenderer redTrafficLight;
@@ -17,24 +16,31 @@ public class TrafficLight : MonoBehaviour
 
     [SerializeField] private AudioClip trafficSoundSFX;
 
+    RaceManager raceManager;
+
+    private void Awake()
+    {
+        greenTrafficLight = GameObject.Find("Traffic Light Green").GetComponent<SkinnedMeshRenderer>();
+        yellowTrafficLight = GameObject.Find("Traffic Light Oranje").GetComponent<SkinnedMeshRenderer>();
+        redTrafficLight = GameObject.Find("Traffic Light Red").GetComponent<SkinnedMeshRenderer>();
+        OffTrafficLight = GameObject.Find("Traffic Light Gray").GetComponent<SkinnedMeshRenderer>();
+    }
+
     private void Start()
     {
-        flyingCarMovement = FindObjectOfType<FlyingCarMovement>();
+        raceManager = FindObjectOfType<RaceManager>();
+        raceManager.UIText.text = "";
+
         greenTrafficLight.enabled = false;
         yellowTrafficLight.enabled = false;
         redTrafficLight.enabled = false;
         OffTrafficLight.enabled = true;
+
+        StartCoroutine(StartTrafficLights());
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !gameStarted)
-        {
-            gameStarted = true;
-            StartCoroutine(StartTrafficLights());
-            Debug.Log("Spatie komt door");
-        }
-
         if (trafficLigts == TrafficLights.Off)
         {
             greenTrafficLight.enabled = false;
@@ -67,21 +73,18 @@ public class TrafficLight : MonoBehaviour
 
     IEnumerator StartTrafficLights()
     {
-        //AudioManager.Instance.PlaySFX(trafficSoundSFX, 1);
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Red;
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Yellow;
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Green;
-        StartGame();
-    }
-
-    private void StartGame()
-    {
-        flyingCarMovement.canMove = true;
-        //if (flyingCarMovementPlayer2 != null)
-        //    flyingCarMovementPlayer2.canMove = true;
-        //UI.startTimer = true;
+        raceManager.flyingCarMovement.canMove = true;
+        if (raceManager.flyingCarMovementPlayer2 != null)
+            raceManager.flyingCarMovementPlayer2.canMove = true;
+        if (raceManager.multiplayer == false)
+            raceManager.UI.startTimer = true;
+        yield return new WaitForSeconds(4f);
+        Destroy(this);
     }
 }

@@ -6,23 +6,24 @@ public class StartManager : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject mainButtons;
     [SerializeField] private GameObject soloMenu;
-
+    [SerializeField] private GameObject creditsMenu;
 
     public AudioClip buttonClickSFX;
     public AudioClip buttonHoverSFX;
-    public AudioClip music1;
 
     private bool settingsOpen;
     private bool soloOpen;
+    private bool creditsOpen;
 
     void Start()
     {
-        AudioManager.Instance.PlayMusic(music1);
         settingsMenu.SetActive(false);
         mainButtons.SetActive(true);
         soloMenu.SetActive(false);
+        creditsMenu.SetActive(false);
         settingsOpen = false;
         soloOpen = false;
+        creditsOpen = false;
     }
 
     public void SettingsMenu()
@@ -54,6 +55,22 @@ public class StartManager : MonoBehaviour
             mainButtons.SetActive(false);
             soloMenu.SetActive(true);
             soloOpen = true;
+        }
+    }
+
+    public void Credits()
+    {
+        if (creditsOpen)
+        {
+            mainButtons.SetActive(true);
+            creditsMenu.SetActive(false);
+            creditsOpen = false;
+        }
+        else if (!creditsOpen)
+        {
+            mainButtons.SetActive(false);
+            creditsMenu.SetActive(true);
+            creditsOpen = true;
         }
     }
 

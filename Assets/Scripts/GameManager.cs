@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public AudioClip rainSFX;
     public AudioClip winSoundSFX;
     public AudioClip medalSound;
-    public AudioSource carRepeatSFX;
+    //public AudioSource carRepeatSFX;
     public AudioClip music1;
 
     public float maxSpeed = 100f;
@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         audioManager = FindAnyObjectByType<AudioManager>();
         AudioManager.Instance.PlaySFX(rainSFX, 0.5f);
+        AudioManager.Instance.PlayMusic(music1);
 
         cars = FindObjectsOfType<FlyingCarMovement>();
 
@@ -76,14 +77,12 @@ public class GameManager : MonoBehaviour
         UpdateEngineSound();
     }
 
-
-
     private void UpdateEngineSound()
     {
         // Adjust pitch and volume of the engine sound based on the current speed
-        float normalizedSpeed = currentSpeed / maxSpeed;
-        carRepeatSFX.pitch = Mathf.Lerp(0.5f, 1.5f, normalizedSpeed);
-        carRepeatSFX.volume = Mathf.Lerp(0.2f, 1.5f, normalizedSpeed);
+        //float normalizedSpeed = currentSpeed / maxSpeed;
+        //carRepeatSFX.pitch = Mathf.Lerp(0.5f, 1.5f, normalizedSpeed);
+        //carRepeatSFX.volume = Mathf.Lerp(0.2f, 1.5f, normalizedSpeed);
 
         // You may want to add additional logic for handling other audio effects based on speed
     }
@@ -127,49 +126,17 @@ public class GameManager : MonoBehaviour
             muteAudio.SetActive(true);
             unMuteAudio.SetActive(false);
             audioMuted = false;
+            Debug.Log("Unmute audio");
 
         }
-        if (!audioMuted)
+        else if (!audioMuted)
         {
             muteAudio.SetActive(false);
             unMuteAudio.SetActive(true);
             audioMuted = true;
+            Debug.Log("mute audio");
+
         }
-    }
-
-    public void HoverSound()
-    {
-        AudioManager.Instance.PlaySFX(buttonHoverSFX, 1);
-    }
-
-    public void ClickSound()
-    {
-        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
-    }
-
-    public void PowerPickupSound()
-    {
-        AudioManager.Instance.PlaySFX(powerUpPickupSFX, 1);
-    }
-
-    public void FinishSound()
-    {
-        AudioManager.Instance.PlaySFX(winSoundSFX, 1);
-    }
-
-    public void MedalSound()
-    {
-        AudioManager.Instance.PlaySFX(medalSound, 1);
-    }
-
-    public void MainMenu()
-    {
-        SceneManager.LoadScene("StartScene");
-    }
-
-    public void RestartLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PauseMenu()
@@ -220,6 +187,41 @@ public class GameManager : MonoBehaviour
             pauseMenu.SetActive(false);
             pauseOpen = false;
         }
+    }
+
+    public void HoverSound()
+    {
+        AudioManager.Instance.PlaySFX(buttonHoverSFX, 1);
+    }
+
+    public void ClickSound()
+    {
+        AudioManager.Instance.PlaySFX(buttonClickSFX, 1);
+    }
+
+    public void PowerPickupSound()
+    {
+        AudioManager.Instance.PlaySFX(powerUpPickupSFX, 1);
+    }
+
+    public void FinishSound()
+    {
+        AudioManager.Instance.PlaySFX(winSoundSFX, 1);
+    }
+
+    public void MedalSound()
+    {
+        AudioManager.Instance.PlaySFX(medalSound, 1);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void QuitGame()

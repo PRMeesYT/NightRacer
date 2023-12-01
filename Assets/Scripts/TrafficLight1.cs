@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class TrafficLight : MonoBehaviour
 {
@@ -7,6 +7,7 @@ public class TrafficLight : MonoBehaviour
 
     private TrafficLights trafficLigts;
 
+    FlyingCarMovement flyingCarMovement;
     [SerializeField] SkinnedMeshRenderer greenTrafficLight;
     [SerializeField] SkinnedMeshRenderer yellowTrafficLight;
     [SerializeField] SkinnedMeshRenderer redTrafficLight;
@@ -14,20 +15,24 @@ public class TrafficLight : MonoBehaviour
 
     [SerializeField] private AudioClip trafficSoundSFX;
 
-    RaceManager raceManager;
-
     private void Start()
     {
+        flyingCarMovement = FindObjectOfType<FlyingCarMovement>();
+        flyingCarMovement.canMove = false;
         greenTrafficLight.enabled = false;
         yellowTrafficLight.enabled = false;
         redTrafficLight.enabled = false;
         OffTrafficLight.enabled = true;
-
-        StartCoroutine(StartTrafficLights());
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(StartTrafficLights());
+            AudioManager.Instance.PlaySFX(trafficSoundSFX, 1);
+        }
+
         if (trafficLigts == TrafficLights.Off)
         {
             greenTrafficLight.enabled = false;
@@ -35,21 +40,21 @@ public class TrafficLight : MonoBehaviour
             redTrafficLight.enabled = false;
             OffTrafficLight.enabled = true;
         }
-        if (trafficLigts == TrafficLights.Green)
+        else if (trafficLigts == TrafficLights.Green)
         {
             greenTrafficLight.enabled = true;
             yellowTrafficLight.enabled = false;
             redTrafficLight.enabled = false;
             OffTrafficLight.enabled = false;
         }
-        if (trafficLigts == TrafficLights.Yellow)
+        else if (trafficLigts == TrafficLights.Yellow)
         {
             greenTrafficLight.enabled = false;
             yellowTrafficLight.enabled = true;
             redTrafficLight.enabled = false;
             OffTrafficLight.enabled = false;
         }
-        if (trafficLigts == TrafficLights.Red)
+        else if (trafficLigts == TrafficLights.Red)
         {
             greenTrafficLight.enabled = false;
             yellowTrafficLight.enabled = false;
@@ -60,19 +65,17 @@ public class TrafficLight : MonoBehaviour
 
     IEnumerator StartTrafficLights()
     {
-        raceManager.PlayStart();
-        yield return new WaitForSeconds(.7f);
+        yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Red;
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Yellow;
         yield return new WaitForSeconds(1f);
+        StartGame();
         trafficLigts = TrafficLights.Green;
-        raceManager.flyingCarMovement.canMove = true;
-        if (raceManager.flyingCarMovementPlayer2 != null)
-            raceManager.flyingCarMovementPlayer2.canMove = true;
-        if (raceManager.multiplayer == false)
-            raceManager.UI.startTimer = true;
-        yield return new WaitForSeconds(4f);
-        Destroy(this);
+    }
+
+    private void StartGame()
+    {
+        flyingCarMovement.canMove = true;
     }
 }

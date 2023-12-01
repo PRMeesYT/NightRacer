@@ -4,8 +4,10 @@ public class AudioManager : MonoBehaviour
 {
     private AudioSource musicSource;
     private AudioSource sfxSource;
-    public AudioSource carSfxSource;
-    public float musicVolume = 1;
+    private AudioSource carSfxSource;
+    private float musicVolume = 1;
+
+    [SerializeField] private AudioClip gameMusic;
 
     #region Instance
     private static AudioManager instance;
@@ -40,7 +42,8 @@ public class AudioManager : MonoBehaviour
         carSfxSource = gameObject.AddComponent<AudioSource>();
 
         musicSource.loop = true;
-        //carSfxSource.loop = true;
+
+        PlayMusic(gameMusic);
     }
 
     public void PlayMusic(AudioClip musicClip)

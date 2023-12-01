@@ -18,9 +18,7 @@ public class GameManager : MonoBehaviour
     public AudioClip rainSFX;
     public AudioClip winSoundSFX;
     public AudioClip medalSound;
-    public AudioClip carAcellSFX;
     public AudioSource carRepeatSFX;
-    public AudioClip carDecellSFX;
     public AudioClip music1;
 
     public float maxSpeed = 100f;
@@ -35,8 +33,6 @@ public class GameManager : MonoBehaviour
     private bool isPlaying = false;
     private bool audioMuted = false;
     private bool gameStart = false;
-    private bool decell = false;
-    private bool canDecell = false;
 
     private float velocity;
 
@@ -62,34 +58,9 @@ public class GameManager : MonoBehaviour
             PauseMenu();
             ClickSound();
         }
-
-        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && !isPlaying)
-        //{
-        //    if (audioManager.carSfxSource != null)
-        //    {
-        //        audioManager.carSfxSource.Stop();
-        //    }
-
-        //    audioManager.StopCarSFX();
-        //    AudioManager.Instance.PlayCarSFX(carAcellSFX, 1);
-        //    StartCoroutine(RepeatSound());
-        //}
-
-        //if (!Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S) && canDecell)
-        //{
-        //    canDecell = false;
-        //    decell = true;
-        //    audioManager.StopCarSFX();
-        //    AudioManager.Instance.PlayCarSFX(carDecellSFX, 1);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) && decell)
-        //{
-        //    decell = false;
-        //    audioManager.StopCarSFX();
-        //}
-
+        
         // Get input for acceleration and deceleration (you can modify this based on your input system)
-        float accelerationInput = Input.GetAxis("Vertical");
+        float accelerationInput = Input.GetAxis("Vertical") + Input.GetAxis("Vertical2");
 
         // Update car speed based on acceleration and deceleration
         if (accelerationInput > 0)

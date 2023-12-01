@@ -205,4 +205,10 @@ public class RaceManager : MonoBehaviour
     {
         carSelected = number;
     }
+
+    public void PlayStart()
+    {
+        AudioManager audioManager = FindObjectOfType<AudioManager>();
+        audioManager.PlaySFX(trafficSoundSFX, 1f);
+    }
 }

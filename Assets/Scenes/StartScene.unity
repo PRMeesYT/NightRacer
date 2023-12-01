@@ -2705,7 +2705,6 @@ MonoBehaviour:
   rainSFX: {fileID: 0}
   winSoundSFX: {fileID: 0}
   medalSound: {fileID: 0}
-  carRepeatSFX: {fileID: 0}
   music1: {fileID: 8300000, guid: 6b03f4e88ec15d74983b2a8a081ed1b3, type: 3}
   maxSpeed: 100
   acceleration: 5
@@ -3089,6 +3088,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6766169078343515528, guid: d840fc7a5323231459166fe546755363, type: 3}
+      propertyPath: gameMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 6b03f4e88ec15d74983b2a8a081ed1b3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

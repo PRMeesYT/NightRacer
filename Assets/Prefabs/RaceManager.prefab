@@ -48,12 +48,13 @@ MonoBehaviour:
   UIText: {fileID: 0}
   startLocation:
   - {fileID: 0}
+  - {fileID: 0}
   hoverCar:
   - {fileID: 689851832646077403, guid: acc147e38fabac64898754021901e445, type: 3}
   - {fileID: 4255394126646446731, guid: f60b3d97ec6400d4bb223c5af1c61fd7, type: 3}
   carTransfromList: []
   finish: {fileID: 0}
-  multiplayer: 0
+  multiplayer: 1
   flyingCarMovement: {fileID: 0}
   flyingCarMovementPlayer2: {fileID: 0}
   checkPointArray: []

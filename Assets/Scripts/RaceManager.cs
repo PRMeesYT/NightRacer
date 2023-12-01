@@ -45,12 +45,6 @@ public class RaceManager : MonoBehaviour
     public Vector3 startPos;
     public int Lap;
 
-    //StartLight
-    enum TrafficLights { Off, Red, Yellow, Green };
-
-    private TrafficLights trafficLigts;
-
-
     [SerializeField] private AudioClip trafficSoundSFX;
 
     public UIGame UI;
@@ -181,11 +175,6 @@ public class RaceManager : MonoBehaviour
         flyingCar.rb.velocity = Vector3.zero;
     }
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         Debug.Log(carSelected);
@@ -204,11 +193,5 @@ public class RaceManager : MonoBehaviour
     public void SetCarSelected(int number)
     {
         carSelected = number;
-    }
-
-    public void PlayStart()
-    {
-        AudioManager audioManager = FindObjectOfType<AudioManager>();
-        audioManager.PlaySFX(trafficSoundSFX, 1f);
     }
 }

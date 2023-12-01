@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1305169890507176145}
   - component: {fileID: 7523987852813999109}
-  - component: {fileID: 7535672933594913512}
+  - component: {fileID: 2697567344756323557}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd9b25e6df25974a8bdc6384d8b1553, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
-  settingsMenu: {fileID: 0}
-  lapTimes: {fileID: 0}
+  pauseMenu: {fileID: 4510848497308387395, guid: 248887dae7f12f9478fd5fff2e0063d3, type: 3}
+  settingsMenu: {fileID: 2853818796262906899, guid: 300301fe42ba585489c348637f72d81b, type: 3}
+  lapTimes: {fileID: 607034754868992420, guid: 4d08fffcf54cf7a498a4e2a678a6cea6, type: 3}
   muteAudio: {fileID: 0}
   unMuteAudio: {fileID: 0}
   buttonClickSFX: {fileID: 8300000, guid: 3d4c6d23a35de52469b71e46614ad519, type: 3}
@@ -57,14 +57,12 @@ MonoBehaviour:
   rainSFX: {fileID: 8300000, guid: f49742e4d0e0e104cb08f1e42ba61c31, type: 3}
   winSoundSFX: {fileID: 8300000, guid: 227ac85055df0d64aab1bd9b844bb1e2, type: 3}
   medalSound: {fileID: 8300000, guid: ed1e2cb6f99e6b14aaee47114d924cd1, type: 3}
-  carAcellSFX: {fileID: 8300000, guid: bf74471a8229b184699db518c90dd79c, type: 3}
-  carRepeatSFX: {fileID: 7535672933594913512}
-  carDecellSFX: {fileID: 8300000, guid: 5a7069ce00427fd488a21c67310145fb, type: 3}
+  carRepeatSFX: {fileID: 2697567344756323557}
   music1: {fileID: 8300000, guid: 6b03f4e88ec15d74983b2a8a081ed1b3, type: 3}
   maxSpeed: 100
   acceleration: 5
   deceleration: 10
---- !u!82 &7535672933594913512
+--- !u!82 &2697567344756323557
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +71,7 @@ AudioSource:
   m_GameObject: {fileID: 3710557646161242310}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 61aad0273a249a54fbc7cc4216b341c0, type: 2}
   m_audioClip: {fileID: 8300000, guid: 587a8be61d3bc604ea9a8fc9a5c795d1, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1

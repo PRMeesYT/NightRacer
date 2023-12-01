@@ -40,6 +40,9 @@ public class UIGame : MonoBehaviour
         if (Player1Text != null)
         {
             Player1Text.text = "";
+        }
+        else if (Player2Text.text != null)
+        {
             Player2Text.text = "";
         }
 

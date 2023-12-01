@@ -190,8 +190,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f2eefc966a61c4f962309d178c5f29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 10
-  maxAngle: 0
+  power: 750
+  force: 250
+  turning: 300
+  horizontal: 0
+  vertical: 0
   springs:
   - {fileID: 1430659535597600141}
   - {fileID: 5885479687523327674}

@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public AudioClip rainSFX;
     public AudioClip winSoundSFX;
     public AudioClip medalSound;
-    //public AudioSource carRepeatSFX;
+    public AudioSource carRepeatSFX;
     public AudioClip music1;
 
     public float maxSpeed = 100f;
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             ClickSound();
         }
         
-        // Get input for acceleration and deceleration (you can modify this based on your input system)
+        // Get input for acceleration and deceleration
         float accelerationInput = Input.GetAxis("Vertical") + Input.GetAxis("Vertical2");
 
         // Update car speed based on acceleration and deceleration
@@ -80,9 +80,9 @@ public class GameManager : MonoBehaviour
     private void UpdateEngineSound()
     {
         // Adjust pitch and volume of the engine sound based on the current speed
-        //float normalizedSpeed = currentSpeed / maxSpeed;
-        //carRepeatSFX.pitch = Mathf.Lerp(0.5f, 1.5f, normalizedSpeed);
-        //carRepeatSFX.volume = Mathf.Lerp(0.2f, 1.5f, normalizedSpeed);
+        float normalizedSpeed = currentSpeed / maxSpeed;
+        carRepeatSFX.pitch = Mathf.Lerp(0.5f, 1f, normalizedSpeed);
+        carRepeatSFX.volume = Mathf.Lerp(0.2f, .8f, normalizedSpeed);
 
         // You may want to add additional logic for handling other audio effects based on speed
     }

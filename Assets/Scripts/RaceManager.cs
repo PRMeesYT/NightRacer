@@ -112,6 +112,14 @@ public class RaceManager : MonoBehaviour
             startPos = transform.position;
             currentCheckpoint = 0;
             currentLap = 0;
+
+            flyingCarMovement.turning = 100f;
+        }
+
+        MiniMap miniMap = FindObjectOfType<MiniMap>();
+        if (miniMap != null)
+        {
+            miniMap.player = flyingCarMovement.transform;
         }
 
 

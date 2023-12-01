@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2ea4e071599044096cf623c0d65b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldTime: 10
-  silverTime: 15
-  bronzeTime: 20
+  goldTime: 100
+  silverTime: 125
+  bronzeTime: 140

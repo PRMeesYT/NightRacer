@@ -9593,53 +9593,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 465984545081332082, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_TrackedObjectOffset.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 492084193033137459, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.99846977
-      objectReference: {fileID: 0}
-    - target: {fileID: 492084193033137459, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.05530037
-      objectReference: {fileID: 0}
-    - target: {fileID: 492084193033137459, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.000000017180051
-      objectReference: {fileID: 0}
-    - target: {fileID: 492084193033137459, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -9.515192e-10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1169774395091121072, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: field of view
-      value: 35
-      objectReference: {fileID: 0}
     - target: {fileID: 3040709014654021985, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
       propertyPath: m_Name
       value: Splitscreen Camera
-      objectReference: {fileID: 0}
-    - target: {fileID: 3133808537695401425, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5610032542913566530, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_LookaheadTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5610032542913566530, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_TrackedObjectOffset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5610032542913566530, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_TrackedObjectOffset.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5785871251620811560, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 7175737240381819250, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9680,18 +9636,6 @@ PrefabInstance:
     - target: {fileID: 7175737240381819250, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8252836431362169229, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 8626838520442688602, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 1.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8825906111164301721, guid: 496bb4b47633c5d4a872bf7a3f8e1841, type: 3}
-      propertyPath: field of view
-      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

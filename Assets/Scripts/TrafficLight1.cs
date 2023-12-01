@@ -7,7 +7,7 @@ public class TrafficLight : MonoBehaviour
 
     private TrafficLights trafficLigts;
 
-    FlyingCarMovement flyingCarMovement;
+    FlyingCarMovement[] flyingCarMovement;
     [SerializeField] SkinnedMeshRenderer greenTrafficLight;
     [SerializeField] SkinnedMeshRenderer yellowTrafficLight;
     [SerializeField] SkinnedMeshRenderer redTrafficLight;
@@ -17,22 +17,17 @@ public class TrafficLight : MonoBehaviour
 
     private void Start()
     {
-        flyingCarMovement = FindObjectOfType<FlyingCarMovement>();
-        flyingCarMovement.canMove = false;
+        flyingCarMovement = FindObjectsOfType<FlyingCarMovement>();
         greenTrafficLight.enabled = false;
         yellowTrafficLight.enabled = false;
         redTrafficLight.enabled = false;
         OffTrafficLight.enabled = true;
+
+        StartCoroutine(StartTrafficLights());
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(StartTrafficLights());
-            AudioManager.Instance.PlaySFX(trafficSoundSFX, 1);
-        }
-
         if (trafficLigts == TrafficLights.Off)
         {
             greenTrafficLight.enabled = false;
@@ -66,16 +61,21 @@ public class TrafficLight : MonoBehaviour
     IEnumerator StartTrafficLights()
     {
         yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySFX(trafficSoundSFX, 1);
+        yield return new WaitForSeconds(.5f);
         trafficLigts = TrafficLights.Red;
         yield return new WaitForSeconds(1f);
         trafficLigts = TrafficLights.Yellow;
         yield return new WaitForSeconds(1f);
-        StartGame();
-        trafficLigts = TrafficLights.Green;
-    }
 
-    private void StartGame()
-    {
-        flyingCarMovement.canMove = true;
+        foreach (FlyingCarMovement car in flyingCarMovement)
+        {
+            car.canMove = true;
+        }
+
+        UIGame timer = FindObjectOfType<UIGame>();
+        timer.startTimer = true;
+
+        trafficLigts = TrafficLights.Green;
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine;
 public class FlyingCarMovement : MonoBehaviour
 {
     public float power;
-    public float maxAngle;
+    public float force;
+    public float turning;
 
     public float horizontal;
     public float vertical;
@@ -60,14 +61,14 @@ public class FlyingCarMovement : MonoBehaviour
             vertical = Input.GetAxis("Vertical2");
             horizontal = Input.GetAxis("Horizontal2");
         }
-        rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.forward) * vertical * 400f, prop.transform.position);
-        rb.AddTorque(Time.deltaTime * transform.TransformDirection(Vector3.up) * horizontal * 300f);
+        rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.forward) * vertical * power, prop.transform.position);
+        rb.AddTorque(Time.deltaTime * transform.TransformDirection(Vector3.up) * horizontal * turning);
         foreach (GameObject spring in springs)
         {
             RaycastHit hit;
             if (Physics.Raycast(spring.transform.position, transform.TransformDirection(Vector3.down), out hit, 3f, ground))
             {
-                rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.up) * Mathf.Pow(3f - hit.distance, 2) / 3f * 250f, spring.transform.position);
+                rb.AddForceAtPosition(Time.deltaTime * transform.TransformDirection(Vector3.up) * Mathf.Pow(3f - hit.distance, 2) / 3f * force, spring.transform.position);
             }
         }
 

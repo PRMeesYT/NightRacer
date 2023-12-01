@@ -260,7 +260,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 233acb72259fc5a479a10888b9bef36b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb70233731a89a94590b6b5c5fc00357, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 233acb72259fc5a479a10888b9bef36b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e77efbf0c6753740875e22806a512bf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2705,9 +2705,7 @@ MonoBehaviour:
   rainSFX: {fileID: 0}
   winSoundSFX: {fileID: 0}
   medalSound: {fileID: 0}
-  carAcellSFX: {fileID: 0}
   carRepeatSFX: {fileID: 0}
-  carDecellSFX: {fileID: 0}
   music1: {fileID: 8300000, guid: 6b03f4e88ec15d74983b2a8a081ed1b3, type: 3}
   maxSpeed: 100
   acceleration: 5

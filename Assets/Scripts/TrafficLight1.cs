@@ -7,8 +7,6 @@ public class TrafficLight : MonoBehaviour
 
     private TrafficLights trafficLigts;
 
-    private bool gameStarted = false;
-
     [SerializeField] SkinnedMeshRenderer greenTrafficLight;
     [SerializeField] SkinnedMeshRenderer yellowTrafficLight;
     [SerializeField] SkinnedMeshRenderer redTrafficLight;
@@ -18,19 +16,8 @@ public class TrafficLight : MonoBehaviour
 
     RaceManager raceManager;
 
-    private void Awake()
-    {
-        greenTrafficLight = GameObject.Find("Traffic Light Green").GetComponent<SkinnedMeshRenderer>();
-        yellowTrafficLight = GameObject.Find("Traffic Light Oranje").GetComponent<SkinnedMeshRenderer>();
-        redTrafficLight = GameObject.Find("Traffic Light Red").GetComponent<SkinnedMeshRenderer>();
-        OffTrafficLight = GameObject.Find("Traffic Light Gray").GetComponent<SkinnedMeshRenderer>();
-    }
-
     private void Start()
     {
-        raceManager = FindObjectOfType<RaceManager>();
-        raceManager.UIText.text = "";
-
         greenTrafficLight.enabled = false;
         yellowTrafficLight.enabled = false;
         redTrafficLight.enabled = false;

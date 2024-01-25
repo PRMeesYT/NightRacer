@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
                 instance = FindObjectOfType<AudioManager>();
                 if (instance == null)
                 {
-                    instance = new GameObject("Spawned AudioManager", typeof(AudioManager)).GetComponent<AudioManager>();
+                    instance = new GameObject("Spawned SoundManager", typeof(AudioManager)).GetComponent<AudioManager>();
                 }
             }
 
@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
 
         musicSource = gameObject.AddComponent<AudioSource>();
         sfxSource = gameObject.AddComponent<AudioSource>();

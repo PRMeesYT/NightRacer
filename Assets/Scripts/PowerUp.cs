@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    private GameManager gameManager;
     private FlyingCarMovement carMovement;
     private List<Action> powerUps = new List<Action>();
     public bool speedBoostActive = false;
@@ -16,7 +15,6 @@ public class PowerUp : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         carMovement = FindObjectOfType<FlyingCarMovement>();
         powerUp = GetComponent<MeshRenderer>();
         powerUps.Add(SpeedBoost);
@@ -27,7 +25,6 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ActivateRandomPowerUp();
-        gameManager.PowerPickupSound();
     }
 
     private void ActivateRandomPowerUp()
@@ -45,7 +42,7 @@ public class PowerUp : MonoBehaviour
     private void AntiCollision()
     {
         Debug.Log("AntiCollision activated");
-        StartCoroutine(ActivateAntiCollision());
+        //StartCoroutine(ActivateAntiCollision());
     }
 
     private void CoinMagnet()
@@ -58,25 +55,25 @@ public class PowerUp : MonoBehaviour
     {
         speedBoostActive = true;
         powerUp.enabled = false;
-        carMovement.power += 10;
-        Debug.Log("Snelheid: " + carMovement.power);
+        carMovement.forwardPower += 10;
+        Debug.Log("Snelheid: " + carMovement.forwardPower);
         yield return new WaitForSeconds(powerUpTime);
-        carMovement.power -= 10;
-        Debug.Log("Snelheid: " + carMovement.power);
+        carMovement.forwardPower -= 10;
+        Debug.Log("Snelheid: " + carMovement.forwardPower);
         speedBoostActive = false;
         Destroy(gameObject);
     }
 
-    IEnumerator ActivateAntiCollision()
-    {
-        antiCollisionActive = true;
-        powerUp.enabled = false;
-        carMovement.DisableCollision();
-        yield return new WaitForSeconds(powerUpTime);
-        carMovement.DisableCollision();
-        antiCollisionActive = false;
-        Destroy(gameObject);
-    }
+    // IEnumerator ActivateAntiCollision()
+    // {
+    //     antiCollisionActive = true;
+    //     powerUp.enabled = false;
+    //     carMovement.ignoreCollision = true;
+    //     yield return new WaitForSeconds(powerUpTime);
+    //     carMovement.ignoreCollision = false;
+    //     antiCollisionActive = false;
+    //     Destroy(gameObject);
+    // }
     IEnumerator ActivateCoinMagnet()
     {
         coinMagnetActive = true;

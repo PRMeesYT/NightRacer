@@ -5,17 +5,17 @@ using UnityEngine;
 
 public class CarLapCounter : MonoBehaviour
 {
-    int passedCheckPointNumber = 0;
-    float timeAtLastPassedCheckpoint = 0f;
+    private int _passedCheckPointNumber = 0;
+    private float _timeAtLastPassedCheckpoint = 0f;
 
-    int numberOfPassedCheckpoints = 0;
+    private int _numberOfPassedCheckpoints = 0;
 
-    int lapsCompleted = 0;
+    private int _lapsCompleted = 0;
     public int lapsToComplete = 2;
 
     public event Action<CarLapCounter> OnPassCheckpoint;
 
-    Transform checkpointPosition;
+    private Transform _checkpointPosition;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,72 +23,73 @@ public class CarLapCounter : MonoBehaviour
         {
             Checkpoint checkPoint = other.GetComponent<Checkpoint>();
 
-            if (passedCheckPointNumber + 1 == checkPoint.checkPointNumber)
+            if (_passedCheckPointNumber + 1 != checkPoint.checkPointNumber) 
+                return;
+            
+            _checkpointPosition = checkPoint.transform;
+
+            _passedCheckPointNumber = checkPoint.checkPointNumber;
+
+            _numberOfPassedCheckpoints++;
+
+            _timeAtLastPassedCheckpoint = Time.time;
+
+            if (checkPoint.isFinish)
             {
-                checkpointPosition = checkPoint.transform;
+                _passedCheckPointNumber = 0;
+                _lapsCompleted++;
 
-                passedCheckPointNumber = checkPoint.checkPointNumber;
+                FlyingCarMovement flyingCarMovement1 = GetComponent<FlyingCarMovement>();
 
-                numberOfPassedCheckpoints++;
-
-                timeAtLastPassedCheckpoint = Time.time;
-
-                if (checkPoint.isFinish)
+                if (_lapsCompleted >= lapsToComplete)
                 {
-                    passedCheckPointNumber = 0;
-                    lapsCompleted++;
+                    FlyingCarMovement flyingCarMovement = GetComponent<FlyingCarMovement>();
+                    int player = (int)flyingCarMovement.belongsTo + 1;
 
-                    FlyingCarMovement flyingCarMovement1 = GetComponent<FlyingCarMovement>();
-
-                    if (lapsCompleted >= lapsToComplete)
+                    RaceManager raceManager = FindObjectOfType<RaceManager>();
+                    if (raceManager.multiplayer)
                     {
-                        FlyingCarMovement flyingCarMovement = GetComponent<FlyingCarMovement>();
-                        int player = flyingCarMovement.player;
-
-                        RaceManager raceManager = FindObjectOfType<RaceManager>();
-                        if (raceManager.multiplayer)
-                        {
-                            FinishMultiplayer finish = FindObjectOfType<FinishMultiplayer>();
-                            finish.Finish(player);
-                        }
-                    }
-                    else
-                    {
-                        StartCoroutine(nextLapText(flyingCarMovement1.player));
+                        FinishMultiplayer finish = FindObjectOfType<FinishMultiplayer>();
+                        finish.Finish(player);
                     }
                 }
-
-                OnPassCheckpoint.Invoke(this);
+                else
+                {
+                    StartCoroutine(NextLapText((int)flyingCarMovement1.belongsTo + 1));
+                }
             }
+
+            if (OnPassCheckpoint != null)
+                OnPassCheckpoint.Invoke(this);
         }
     }
 
-    IEnumerator nextLapText(int player)
+    IEnumerator NextLapText(int player)
     {
-        UIGame UI = FindObjectOfType<UIGame>();
-        if (UI.Player1Text != null)
+        UIGame ui = FindObjectOfType<UIGame>();
+        if (ui.player1Text != null)
         {
 
             if (player == 1)
             {
-                if (lapsCompleted == lapsToComplete - 1)
+                if (_lapsCompleted == lapsToComplete - 1)
                 {
-                    UI.Player1Text.text = "Final Lap";
+                    ui.player1Text.text = "Final Lap";
                 }
                 else
                 {
-                    UI.Player1Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                    ui.player1Text.text = "Lap " + (_lapsCompleted + 1).ToString();
                 }
             }
             else if (player == 2)
             {
-                if (lapsCompleted == lapsToComplete - 1)
+                if (_lapsCompleted == lapsToComplete - 1)
                 {
-                    UI.Player2Text.text = "Final Lap";
+                    ui.player2Text.text = "Final Lap";
                 }
                 else
                 {
-                    UI.Player2Text.text = "Lap " + (lapsCompleted + 1).ToString();
+                    ui.player2Text.text = "Lap " + (_lapsCompleted + 1).ToString();
                 }
             }
 
@@ -96,11 +97,11 @@ public class CarLapCounter : MonoBehaviour
 
             if (player == 1)
             {
-                UI.Player1Text.text = "";
+                ui.player1Text.text = "";
             }
             else if (player == 2)
             {
-                UI.Player2Text.text = "";
+                ui.player2Text.text = "";
             }
         }
 
@@ -108,13 +109,13 @@ public class CarLapCounter : MonoBehaviour
 
     public Transform GetCheckpointLocation()
     {
-        if (checkpointPosition == null)
+        if (_checkpointPosition == null)
         {
             return null;
         }
         else
         {
-            return checkpointPosition;
+            return _checkpointPosition;
         }
     }
 }

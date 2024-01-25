@@ -9,7 +9,7 @@ public class CameraController : MonoBehaviour
 
     public bool playerSpawned;
 
-    Transform player;
+    public Transform player;
 
     void Start()
     {
@@ -18,11 +18,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (playerSpawned)
-        {
-            virtualCamera.LookAt = player;
-            virtualCamera.Follow = player;
-        }
+        virtualCamera.LookAt = player;
+        virtualCamera.Follow = player;
     }
 
     public void SetupCamera()

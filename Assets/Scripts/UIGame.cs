@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +6,7 @@ public class UIGame : MonoBehaviour
 {
     public TextMeshProUGUI speedText;
 
-    float speed;
+    private float _speed;
 
     public GameObject car;
 
@@ -24,27 +22,25 @@ public class UIGame : MonoBehaviour
     [SerializeField] private Camera p1Cam;
     [SerializeField] private Camera p2Cam;
 
-    public TextMeshProUGUI Player1Text;
-    public TextMeshProUGUI Player2Text;
+    public TextMeshProUGUI player1Text;
+    public TextMeshProUGUI player2Text;
 
-    Rigidbody carRigidbody;
-    RaceManager raceManager;
+    private Rigidbody _carRigidbody;
+    private RaceManager _raceManager;
 
     private void Awake()
     {
-        raceManager = FindObjectOfType<RaceManager>();
+        _raceManager = FindObjectOfType<RaceManager>();
     }
 
     void Start()
     {
-        if (Player1Text != null)
+        if (player1Text != null)
         {
-            Player1Text.text = "";
-            Player2Text.text = "";
+            player1Text.text = String.Empty;
+            player2Text.text = String.Empty;
         }
 
-        //checkPoints.OnPlayerCorrectCheckpoint += RaceManager_OnPlayerCorrectCheckpoint;
-        //checkPoints.OnPlayerWrongCheckpoint += RaceManager_OnPlayerWrongCheckpoint;
 
         Hide();
     }
@@ -79,8 +75,8 @@ public class UIGame : MonoBehaviour
 
         if (car != null)
         {
-            speed = carRigidbody.velocity.magnitude * 3.6f;
-            speedText.text = (int)speed + " kp/h";
+            _speed = _carRigidbody.velocity.magnitude * 3.6f;
+            speedText.text = (int)_speed + " kp/h";
         }
     }
 
@@ -92,23 +88,23 @@ public class UIGame : MonoBehaviour
     public void GetComponents()
     {
         car = GameObject.FindGameObjectWithTag("Player").gameObject;
-        carRigidbody = car.GetComponent<Rigidbody>();
+        _carRigidbody = car.GetComponent<Rigidbody>();
     }
 
     public void Finish()
     {
         EventManager.OnTimerStop();
 
-        raceManager.UIText.text = "Finish!!!";
+        _raceManager.uiText.text = "Finish!!!";
     }
 
     public void Player1Wins()
     {
-        raceManager.UIText.text = "Player1 Wins!!!";
+        _raceManager.uiText.text = "Player1 Wins!!!";
     }
 
     public void Player2Wins()
     {
-        raceManager.UIText.text = "Player2 Wins!!!";
+        _raceManager.uiText.text = "Player2 Wins!!!";
     }
 }

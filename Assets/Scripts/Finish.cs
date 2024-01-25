@@ -18,19 +18,16 @@ public class Finish : MonoBehaviour
     public Sprite bronzeMedal;
     public Sprite none;
 
-    private GameManager gameManager;
     private MoveToNextLevel nextLevel;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameManager.FinishSound();
             UIGame UI = FindObjectOfType<UIGame>();
             UI.Finish();
 

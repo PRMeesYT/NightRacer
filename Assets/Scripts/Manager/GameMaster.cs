@@ -1,8 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+
+/*
+public class GameMaster : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject settingsMenu;
@@ -10,17 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject muteAudio;
     [SerializeField] private GameObject unMuteAudio;
 
-    private AudioManager audioManager;
-
-    public AudioClip buttonClickSFX;
-    public AudioClip buttonHoverSFX;
-    public AudioClip powerUpPickupSFX;
-    public AudioClip rainSFX;
-    public AudioClip winSoundSFX;
-    public AudioClip medalSound;
-    //public AudioSource carRepeatSFX;
-    public AudioClip music1;
-
+   
     public float maxSpeed = 100f;
     public float acceleration = 5f;
     public float deceleration = 10f;
@@ -40,15 +31,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        audioManager = FindAnyObjectByType<AudioManager>();
-        AudioManager.Instance.PlaySFX(rainSFX, 0.5f);
-        AudioManager.Instance.PlayMusic(music1);
+        // audioManager = FindAnyObjectByType<AudioManager>();
+        // AudioManager.Instance.PlaySFX(rainSFX, 0.5f);
+        // AudioManager.Instance.PlayMusic(music1);
 
         cars = FindObjectsOfType<FlyingCarMovement>();
 
         foreach (FlyingCarMovement car in cars)
         {
-            velocity = car.vertical;
+            velocity = car.forwardPower;
         }
     }
 
@@ -106,13 +97,13 @@ public class GameManager : MonoBehaviour
     //        isPlaying = false;
     //        canDecell = true;
 
-    //        AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+    //        SoundManager.Instance.PlayCarSFX(carRepeatSFX, 1);
 
     //        yield return new WaitForSeconds(carRepeatSFX.length);
 
     //        if (isPlaying == false)
     //        {
-    //            AudioManager.Instance.PlayCarSFX(carRepeatSFX, 1);
+    //            SoundManager.Instance.PlayCarSFX(carRepeatSFX, 1);
     //            StartCoroutine(RepeatSound());
     //        }
     //    }
@@ -229,3 +220,4 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 }
+*/
